@@ -28,6 +28,8 @@ You can install the package via composer:
 composer require beyondcode/laravel-self-diagnosis
 ```
 
+If your using Laravel 5.5+ the `SelfDiagnosisServiceProvider` will be automatically registered for you. 
+
 ## Usage
 
 Just call the artisan command to start the checks:
