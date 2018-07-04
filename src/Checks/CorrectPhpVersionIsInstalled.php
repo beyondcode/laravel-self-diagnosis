@@ -2,6 +2,8 @@
 
 namespace BeyondCode\SelfDiagnosis\Checks;
 
+use Illuminate\Support\Facades\File;
+
 class CorrectPhpVersionIsInstalled implements Check
 {
     /**
@@ -21,7 +23,9 @@ class CorrectPhpVersionIsInstalled implements Check
      */
     public function check(): bool
     {
-        return version_compare(phpversion(), '7.1.3', '>=');
+        $requiredVersion = json_decode(File::get(base_path('composer.json')))->require->php;
+
+        return version_compare(phpversion(), ltrim($requiredVersion, '^'), '>=');
     }
 
     /**
