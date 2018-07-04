@@ -7,6 +7,9 @@
 
 This package allows you to run self-diagnosis tests on your Laravel application. It comes with multiple checks out of the box and allows you to add custom checks yourself.
 
+Here is an example output of the command:
+
+![All Checks passed](https://beyondco.de/github/self-diagnosis/checks_green.png)
 
 ## Included checks
 
@@ -118,7 +121,6 @@ class MyCustomCheck implements Check
  
 ### Example Output
 
-![All Checks passed](https://beyondco.de/github/self-diagnosis/checks_green.png)
 
 ![Some Checks failed](https://beyondco.de/github/self-diagnosis/checks_red.png)
 
