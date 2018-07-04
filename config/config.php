@@ -11,7 +11,6 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
-        \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
 	]
