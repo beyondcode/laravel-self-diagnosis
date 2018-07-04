@@ -56,9 +56,9 @@ This will publish a `self-diagnosis.php` file in your `config` folder. This file
 <?php
 
 return [
-	
-	'checks' => [
-		\BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
+    
+    'checks' => [
+        \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\ComposerIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
@@ -69,7 +69,7 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
-	]
+    ]
 
 ];
 ```
