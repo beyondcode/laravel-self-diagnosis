@@ -71,6 +71,46 @@ return [
 ### Custom Checks
 
 You can create custom checks, by implementing the `BeyondCode\SelfDiagnosis\Checks\Check` interface and adding the class to the config file.
+Like this:
+
+```php
+<?php
+
+use BeyondCode\SelfDiagnosis\Checks\Check;
+
+class MyCustomCheck implements Check
+{
+    /**
+     * The name of the check.
+     *
+     * @return string
+     */
+    public function name(): string
+    {
+        return 'My custom check.';
+    }
+
+    /**
+     * Perform the actual verification of this check.
+     *
+     * @return bool
+     */
+    public function check(): bool
+    {
+        return true;
+    }
+
+    /**
+     * The error message to display in case the check does not pass.
+     *
+     * @return string
+     */
+    public function message() : string
+    {
+        return 'This is the error message that users see if "check" returns false.';
+    }
+}
+```
 
 
 ### Testing
