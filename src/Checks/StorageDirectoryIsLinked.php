@@ -31,7 +31,7 @@ class StorageDirectoryIsLinked implements Check
      */
     public function message() : string
     {
-        return 'The storage directory is not linked. Use "php artisan storage link"';
+        return 'The storage directory is not linked. Use "php artisan storage:link"';
     }
 
     /**
@@ -41,6 +41,10 @@ class StorageDirectoryIsLinked implements Check
      */
     public function check(): bool
     {
-        return $this->filesystem->type(public_path('storage')) === 'link';
+        try {
+            return $this->filesystem->type(public_path('storage')) === 'link';
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

@@ -24,7 +24,7 @@ class SelfDiagnosisServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'env-check');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'self-diagnosis');
 
         $this->app->bind('command.selfdiagnosis', SelfDiagnosisCommand::class);
 

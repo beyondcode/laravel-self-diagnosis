@@ -1,6 +1,6 @@
 {
     "name": "beyondcode/laravel-self-diagnosis",
-    "description": "Perform various self diagnosis tests on your Laravel installation.",
+    "description": "Perform various self diagnosis tests on your Laravel application.",
     "keywords": [
         "beyondcode",
         "laravel-self-diagnosis"
@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "5.5.*|5.6.*",
+        "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
         "vlucas/phpdotenv": "~2.2"
     },
     "require-dev": {
