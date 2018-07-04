@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class MigrationsAreUpToDate implements Check
 {
+    private $databaseError = null;
 
     /**
      * The name of the check.
@@ -24,11 +25,14 @@ class MigrationsAreUpToDate implements Check
      */
     public function check(): bool
     {
-        Artisan::call('migrate', ['--pretend' => 'true']);
-
-        $output = Artisan::output();
-
-        return strstr($output, 'Nothing to migrate.');
+        try {
+            Artisan::call('migrate', ['--pretend' => 'true']);
+            $output = Artisan::output();
+            return strstr($output, 'Nothing to migrate.');
+        } catch (\PDOException $e) {
+            $this->databaseError = $e->getMessage();
+        }
+        return false;
     }
 
     /**
@@ -36,8 +40,11 @@ class MigrationsAreUpToDate implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(): string
     {
+        if ($this->databaseError !== null) {
+            return 'Unable to check for migrations: ' . $this->databaseError;
+        }
         return 'You need to update your migrations. Call "php artisan migrate".';
     }
 }

@@ -54,6 +54,7 @@ class SelfDiagnosisCommand extends Command
 
             foreach ($messages as $message) {
                 $this->output->writeln('<fg=red>'.$message.'</fg=red>');
+                $this->output->writeln('');
             }
         } else {
             $this->info('Good job, looks like you are all set up.');
