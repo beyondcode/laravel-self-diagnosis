@@ -14,8 +14,8 @@ return [
     /*
      * Common checks that will be performed on all environments.
      */
-	'checks' => [
-		\BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
+    'checks' => [
+        \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\ComposerIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
@@ -25,7 +25,7 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
-	],
+    ],
 
     /*
      * Production environment specific checks.
