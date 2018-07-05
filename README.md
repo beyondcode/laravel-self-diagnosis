@@ -24,6 +24,18 @@ Here is an example output of the command:
 - Are there any migrations that need to be run?
 - Is the storage directory linked?
 
+### Development environment checks
+
+- Is the configuration not cached?
+- Are the routes not cached?
+
+### Production environment checks
+
+- Is the configuration cached?
+- Are the routes cached?
+- Is the xdebug extension disabled?
+- Is APP_DEBUG set to false?
+
 ## Installation
 
 You can install the package via composer:
