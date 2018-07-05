@@ -21,7 +21,7 @@ class CorrectPhpVersionIsInstalled implements Check
      */
     public function name(): string
     {
-        return 'The correct PHP Version is installed';
+        return 'The correct PHP version is installed';
     }
 
     /**
