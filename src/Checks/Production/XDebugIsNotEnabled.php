@@ -24,7 +24,7 @@ class XDebugIsNotEnabled implements Check
      */
     public function check(): bool
     {
-        return extension_loaded('xdebug') === true;
+        return extension_loaded('xdebug') === false;
     }
 
     /**
