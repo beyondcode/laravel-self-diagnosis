@@ -42,7 +42,7 @@ class StorageDirectoryIsLinked implements Check
     public function check(): bool
     {
         try {
-            return $this->filesystem->type(public_path('storage')) === 'link';
+            return $this->filesystem->isDirectory(public_path('storage'));
         } catch (\Exception $e) {
             return false;
         }
