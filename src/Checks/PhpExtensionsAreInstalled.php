@@ -38,7 +38,7 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function message(): string
     {
-        return 'The following extensions are missing: '.PHP_EOL.$this->extensions->implode(PHP_EOL);
+        return 'The following extensions are missing: ' . PHP_EOL . $this->extensions->implode(PHP_EOL);
     }
 
     /**
