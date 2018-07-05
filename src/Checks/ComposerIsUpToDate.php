@@ -15,6 +15,7 @@ class ComposerIsUpToDate implements Check
     public function __construct(Composer $composer)
     {
         $this->composer = $composer;
+        $this->composer->setWorkingPath(base_path());
     }
 
     /**
