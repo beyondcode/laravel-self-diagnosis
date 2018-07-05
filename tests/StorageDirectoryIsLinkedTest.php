@@ -13,7 +13,7 @@ class StorageDirectoryIsLinkedTest extends TestCase
     {
         $filesystem = \Mockery::mock(Filesystem::class);
 
-        $filesystem->shouldReceive('type')
+        $filesystem->shouldReceive('isDirectory')
             ->with(public_path('storage'))
             ->andReturn('link');
 
