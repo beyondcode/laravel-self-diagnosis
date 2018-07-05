@@ -58,6 +58,7 @@ class PhpExtensionsAreInstalled implements Check
             'json'
         ]);
         $this->extensions = $this->extensions->merge($this->getExtensionsRequiredInComposerFile());
+        $this->extensions = $this->extensions->unique();
         $this->extensions = $this->extensions->reject(function ($ext) {
             return extension_loaded($ext);
         });
@@ -71,15 +72,18 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function getExtensionsRequiredInComposerFile()
     {
-        $composer = json_decode($this->filesystem->get(base_path('composer.json')), true);
-        $filtered = array_where(array_keys(array_get($composer, 'require')), function ($value, $key) {
-            return starts_with($value, self::EXT);
-        });
+        $installedPackages = json_decode($this->filesystem->get(base_path('vendor/composer/installed.json')), true);
+
         $extensions = [];
-        foreach ($filtered as $extension) {
-            $extensions[] = str_replace_first(self::EXT, '', $extension);
+        foreach ($installedPackages as $installedPackage) {
+            $filtered = array_where(array_keys(array_get($installedPackage, 'require', [])), function ($value, $key) {
+                return starts_with($value, self::EXT);
+            });
+            foreach ($filtered as $extension) {
+                $extensions[] = str_replace_first(self::EXT, '', $extension);
+            }
         }
-        return $extensions;
+        return array_unique($extensions);
     }
 
 }
