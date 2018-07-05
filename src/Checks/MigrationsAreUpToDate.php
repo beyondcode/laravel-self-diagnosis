@@ -26,7 +26,7 @@ class MigrationsAreUpToDate implements Check
     public function check(): bool
     {
         try {
-            Artisan::call('migrate', ['--pretend' => 'true']);
+            Artisan::call('migrate', ['--pretend' => 'true', '--force' => 'true']);
             $output = Artisan::output();
             return strstr($output, 'Nothing to migrate.');
         } catch (\PDOException $e) {
