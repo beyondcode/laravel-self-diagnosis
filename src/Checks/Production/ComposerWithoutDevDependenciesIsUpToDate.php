@@ -1,10 +1,11 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks;
+namespace BeyondCode\SelfDiagnosis\Checks\Production;
 
 use BeyondCode\SelfDiagnosis\Composer;
+use BeyondCode\SelfDiagnosis\Checks\Check;
 
-class ComposerIsUpToDate implements Check
+class ComposerWithoutDevDependenciesIsUpToDate implements Check
 {
     /** @var Composer */
     private $composer;
@@ -25,7 +26,7 @@ class ComposerIsUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Composer dependencies (without dev) are up to date';
     }
 
     /**
@@ -35,7 +36,7 @@ class ComposerIsUpToDate implements Check
      */
     public function check(): bool
     {
-        $this->output = $this->composer->installDryRun();
+        $this->output = $this->composer->installDryRun('--no-dev');
 
         return str_contains($this->output, 'Nothing to install or update');
     }
