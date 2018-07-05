@@ -8,6 +8,7 @@ return [
     'productionEnvironments' => [
         'prod',
         'production',
+        'live',
     ],
 
     /*
