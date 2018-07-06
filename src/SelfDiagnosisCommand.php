@@ -21,7 +21,7 @@ class SelfDiagnosisCommand extends Command
      */
     protected $description = 'Perform application self diagnosis.';
 
-    private $messages = [];
+    private $failed = false;
 
     public function handle()
     {
@@ -34,14 +34,7 @@ class SelfDiagnosisCommand extends Command
 
         $this->runChecks($environmentChecks, 'Environment Specific Checks ('.app()->environment().')');
 
-        if (count($this->messages)) {
-            $this->output->writeln('The following checks failed:');
-
-            foreach ($this->messages as $message) {
-                $this->output->writeln('<fg=red>'.$message.'</fg=red>');
-                $this->output->writeln('');
-            }
-        } else {
+        if (!$this->failed) {
             $this->info('Good job, looks like you are all set up.');
         }
     }
@@ -73,9 +66,10 @@ class SelfDiagnosisCommand extends Command
         if ($check->check()) {
             $this->output->write('<fg=green>✔</fg=green>');
         } else {
+            $this->failed = true;
             $this->output->write('<fg=red>✘</fg=red>');
-
-            $this->messages[] = $check->message();
+            $this->output->write(PHP_EOL);
+            $this->output->writeln('<fg=red>'.$check->message().'</fg=red>');
         }
 
         $this->output->write(PHP_EOL);
