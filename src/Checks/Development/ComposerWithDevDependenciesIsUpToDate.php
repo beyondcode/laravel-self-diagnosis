@@ -26,7 +26,7 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Composer dependencies are up to date with the composer.lock file.';
     }
 
     /**
