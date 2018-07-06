@@ -14,7 +14,7 @@ Here is an example output of the command:
 ## Included checks
 
 - Is the APP_KEY set?
-- Are your composer dependencies up to date?
+- Are your composer dependencies up to date with the composer.lock file?
 - Do you have the correct PHP version installed?
 - Do you have the correct PHP extensions installed?
 - Can a connection to the database be established?
@@ -75,6 +75,7 @@ return [
     'productionEnvironments' => [
         'prod',
         'production',
+        'live',
     ],
 
     /*
@@ -82,7 +83,6 @@ return [
      */
     'checks' => [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
-        \BeyondCode\SelfDiagnosis\Checks\ComposerIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
@@ -91,12 +91,13 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
-	],
+    ],
 
     /*
      * Production environment specific checks.
      */
     'production' => [
+        \BeyondCode\SelfDiagnosis\Checks\Production\ComposerWithoutDevDependenciesIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\Production\ConfigurationIsCached::class,
         \BeyondCode\SelfDiagnosis\Checks\Production\RoutesAreCached::class,
         \BeyondCode\SelfDiagnosis\Checks\Production\XDebugIsNotEnabled::class,
@@ -107,6 +108,7 @@ return [
      * Development environment specific checks.
      */
     'development' => [
+        \BeyondCode\SelfDiagnosis\Checks\Development\ComposerWithDevDependenciesIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\Development\ConfigurationIsNotCached::class,
         \BeyondCode\SelfDiagnosis\Checks\Development\RoutesAreNotCached::class,
     ],
