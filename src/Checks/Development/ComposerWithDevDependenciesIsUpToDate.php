@@ -1,10 +1,11 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks;
+namespace BeyondCode\SelfDiagnosis\Checks\Development;
 
 use BeyondCode\SelfDiagnosis\Composer;
+use BeyondCode\SelfDiagnosis\Checks\Check;
 
-class ComposerIsUpToDate implements Check
+class ComposerWithDevDependenciesIsUpToDate implements Check
 {
     /** @var Composer */
     private $composer;
@@ -15,6 +16,7 @@ class ComposerIsUpToDate implements Check
     public function __construct(Composer $composer)
     {
         $this->composer = $composer;
+        $this->composer->setWorkingPath(base_path());
     }
 
     /**
@@ -24,7 +26,7 @@ class ComposerIsUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Composer dependencies are up to date with the composer.lock file.';
     }
 
     /**

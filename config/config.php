@@ -14,9 +14,8 @@ return [
     /*
      * Common checks that will be performed on all environments.
      */
-	'checks' => [
-		\BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
-        \BeyondCode\SelfDiagnosis\Checks\ComposerIsUpToDate::class,
+    'checks' => [
+        \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
@@ -25,12 +24,13 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
-	],
+    ],
 
     /*
      * Production environment specific checks.
      */
     'production' => [
+        \BeyondCode\SelfDiagnosis\Checks\Production\ComposerWithoutDevDependenciesIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\Production\ConfigurationIsCached::class,
         \BeyondCode\SelfDiagnosis\Checks\Production\RoutesAreCached::class,
         \BeyondCode\SelfDiagnosis\Checks\Production\XDebugIsNotEnabled::class,
@@ -41,6 +41,7 @@ return [
      * Development environment specific checks.
      */
     'development' => [
+        \BeyondCode\SelfDiagnosis\Checks\Development\ComposerWithDevDependenciesIsUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\Development\ConfigurationIsNotCached::class,
         \BeyondCode\SelfDiagnosis\Checks\Development\RoutesAreNotCached::class,
     ],
