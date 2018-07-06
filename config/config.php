@@ -46,4 +46,12 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\Development\RoutesAreNotCached::class,
     ],
 
+
+    /*
+     * The paths to check for the correct permissions
+     */
+    'directoryPaths' => [
+        storage_path(),
+        base_path('bootstrap/cache'),
+    ],
 ];
