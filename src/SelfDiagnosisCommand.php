@@ -25,24 +25,24 @@ class SelfDiagnosisCommand extends Command
 
     public function handle()
     {
-        $this->runChecks(config('self-diagnosis.checks', []), 'Running Common Checks');
+        $this->runChecks(config('self-diagnosis.checks', []), trans('self-diagnosis::commands.self_diagnosis.common_checks'));
 
         $environmentChecks = config('self-diagnosis.development', []);
         if (in_array(app()->environment(), config('self-diagnosis.productionEnvironments'))) {
             $environmentChecks = config('self-diagnosis.production', []);
         }
 
-        $this->runChecks($environmentChecks, 'Environment Specific Checks ('.app()->environment().')');
+        $this->runChecks($environmentChecks, trans('self-diagnosis::commands.self_diagnosis.environment_specific_checks', ['environment' => app()->environment()]));
 
         if (count($this->messages)) {
-            $this->output->writeln('The following checks failed:');
+            $this->output->writeln(trans('self-diagnosis::commands.self_diagnosis.failed_checks'));
 
             foreach ($this->messages as $message) {
                 $this->output->writeln('<fg=red>'.$message.'</fg=red>');
                 $this->output->writeln('');
             }
         } else {
-            $this->info('Good job, looks like you are all set up.');
+            $this->info(trans('self-diagnosis::commands.self_diagnosis.success'));
         }
     }
 
@@ -58,7 +58,11 @@ class SelfDiagnosisCommand extends Command
         foreach ($checks as $check) {
             $checkClass = app($check);
 
-            $this->output->write("<fg=yellow>Running check {$current}/{$max}:</fg=yellow> {$checkClass->name()}...  ");
+            $this->output->write(trans('self-diagnosis::commands.self_diagnosis.running_check', [
+                'current' => $current,
+                'max' => $max,
+                'name' => $checkClass->name(),
+            ]));
 
             $this->runCheck($checkClass);
 
