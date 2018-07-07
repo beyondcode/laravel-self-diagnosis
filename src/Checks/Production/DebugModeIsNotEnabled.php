@@ -14,7 +14,7 @@ class DebugModeIsNotEnabled implements Check
      */
     public function name(): string
     {
-        return 'Debug mode is not enabled';
+        return trans('self-diagnosis::checks.debug_mode_is_not_enabled.name');
     }
 
     /**
@@ -34,6 +34,6 @@ class DebugModeIsNotEnabled implements Check
      */
     public function message(): string
     {
-        return 'You should not use debug mode in production. Set APP_DEBUG to false.';
+        return trans('self-diagnosis::checks.debug_mode_is_not_enabled.message');
     }
 }

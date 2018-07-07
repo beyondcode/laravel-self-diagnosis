@@ -21,7 +21,7 @@ class CorrectPhpVersionIsInstalled implements Check
      */
     public function name(): string
     {
-        return 'The correct PHP version is installed';
+        return trans('self-diagnosis::checks.correct_php_version_is_installed.name');
     }
 
     /**
@@ -43,7 +43,10 @@ class CorrectPhpVersionIsInstalled implements Check
      */
     public function message() : string
     {
-        return 'You do not have the required PHP version installed.'.PHP_EOL.'Required: '.$this->getRequiredPhpVersion().PHP_EOL.'Used: '.phpversion();
+        return trans('self-diagnosis::checks.correct_php_version_is_installed.message', [
+            'required' => $this->getRequiredPhpVersion(),
+            'used' => phpversion(),
+        ]);
     }
 
     /**

@@ -28,7 +28,7 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function name(): string
     {
-        return 'The required PHP extensions are installed';
+        return trans('self-dianosis::checks.php_extensions_are_installed.name');
     }
 
     /**
@@ -38,7 +38,9 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function message(): string
     {
-        return 'The following extensions are missing: ' . PHP_EOL . $this->extensions->implode(PHP_EOL);
+        return trans('self-dianosis::checks.php_extensions_are_installed.message', [
+            'extensions' => $this->extensions->implode(PHP_EOL),
+        ]);
     }
 
     /**

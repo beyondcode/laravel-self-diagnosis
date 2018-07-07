@@ -22,7 +22,7 @@ class EnvFileExists implements Check
      */
     public function name(): string
     {
-        return 'The environment file exists';
+        return trans('self-diagnosis::checks.env_file_exists.name');
     }
 
     /**
@@ -42,6 +42,6 @@ class EnvFileExists implements Check
      */
     public function message() : string
     {
-        return 'These .env file does not exist. Please copy your .env.example file as .env';
+        return trans('self-diagnosis::checks.env_file_exists.message');
     }
 }

@@ -11,7 +11,7 @@ class AppKeyIsSet implements Check
      */
     public function name(): string
     {
-        return 'App key is set';
+        return trans('self-diagnosis::checks.app_key_is_set.name');
     }
 
     /**
@@ -31,6 +31,6 @@ class AppKeyIsSet implements Check
      */
     public function message() : string
     {
-        return 'The application key is not set. Call "php artisan key:generate" to create it.';
+        return trans('self-diagnosis::checks.app_key_is_set.message');
     }
 }

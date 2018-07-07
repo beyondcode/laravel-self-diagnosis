@@ -14,7 +14,7 @@ class XDebugIsNotEnabled implements Check
      */
     public function name(): string
     {
-        return 'The xdebug extension is not active.';
+        return trans('self-diagnosis::checks.xdebug_is_not_enabled.name');
     }
 
     /**
@@ -34,6 +34,6 @@ class XDebugIsNotEnabled implements Check
      */
     public function message(): string
     {
-        return 'You should not have the "xdebug" PHP extension activated in production.';
+        return trans('self-diagnosis::checks.xdebug_is_not_enabled.message');
     }
 }

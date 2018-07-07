@@ -14,7 +14,7 @@ class RoutesAreNotCached implements Check
      */
     public function name(): string
     {
-        return 'Routes are not cached';
+        return trans('self-diagnosis::checks.routes_are_not_cached.name');
     }
 
     /**
@@ -34,6 +34,6 @@ class RoutesAreNotCached implements Check
      */
     public function message(): string
     {
-        return 'Your routes should not be cached during development. Call "php artisan route:clear" to clear the route cache.';
+        return trans('self-diagnosis::checks.routes_are_not_cached.message');
     }
 }

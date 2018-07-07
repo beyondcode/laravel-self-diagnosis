@@ -26,7 +26,7 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date with the composer.lock file.';
+        return trans('self-diagnosis::checks.composer_with_dev_dependencies_is_up_to_date.name');
     }
 
     /**
@@ -48,6 +48,8 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
      */
     public function message() : string
     {
-        return 'Your composer dependencies are not up to date. Call "composer install".' . $this->output;
+        return trans('self-diagnosis::checks.composer_with_dev_dependencies_is_up_to_date.message', [
+            'more' => $this->output,
+        ]);
     }
 }

@@ -14,7 +14,7 @@ class ConfigurationIsNotCached implements Check
      */
     public function name(): string
     {
-        return 'Configuration is not cached';
+        return trans('self-diagnosis::checks.configuration_is_not_cached.name');
     }
 
     /**
@@ -34,6 +34,6 @@ class ConfigurationIsNotCached implements Check
      */
     public function message(): string
     {
-        return 'Your configuration files should not be cached during development. Call "php artisan config:clear" to clear the config cache.';
+        return trans('self-diagnosis::checks.configuration_is_not_cached.message');
     }
 }

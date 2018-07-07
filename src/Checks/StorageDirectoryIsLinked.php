@@ -21,7 +21,7 @@ class StorageDirectoryIsLinked implements Check
      */
     public function name(): string
     {
-        return 'The storage directory is linked.';
+        return trans('self-diagnosis::checks.storage_directory_is_linked.name');
     }
 
     /**
@@ -31,7 +31,7 @@ class StorageDirectoryIsLinked implements Check
      */
     public function message() : string
     {
-        return 'The storage directory is not linked. Use "php artisan storage:link"';
+        return trans('self-diagnosis::checks.storage_directory_is_linked.message');
     }
 
     /**
