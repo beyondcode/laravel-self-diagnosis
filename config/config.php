@@ -17,7 +17,12 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
-        \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
+        \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class => [
+            'directories' => [
+                storage_path(),
+                base_path('bootstrap/cache'),
+            ],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,

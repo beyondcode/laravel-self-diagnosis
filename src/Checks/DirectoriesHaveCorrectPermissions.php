@@ -49,10 +49,7 @@ class DirectoriesHaveCorrectPermissions implements Check
      */
     public function check(array $config): bool
     {
-        $this->paths = Collection::make([
-            storage_path(),
-            base_path('bootstrap/cache')
-        ]);
+        $this->paths = Collection::make(array_get($config, 'directories', []));
 
         $this->paths = $this->paths->reject(function ($path) {
             return $this->filesystem->isWritable($path);
