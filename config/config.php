@@ -27,7 +27,18 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
-        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class,
+        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class => [
+            'extensions' => [
+                'openssl',
+                'PDO',
+                'mbstring',
+                'tokenizer',
+                'xml',
+                'ctype',
+                'json',
+            ],
+            'include_composer_extensions' => true,
+        ],
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
     ],
 
