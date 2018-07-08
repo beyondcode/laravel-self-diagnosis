@@ -55,8 +55,12 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
             \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
+            \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled::class => [
+                'extensions' => [
+                    'xdebug',
+                ],
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\XDebugIsNotEnabled::class,
         ],
     ],
 
