@@ -12,7 +12,7 @@ class ConfigurationIsNotCached implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'Configuration is not cached';
     }
@@ -22,7 +22,7 @@ class ConfigurationIsNotCached implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return app()->configurationIsCached() === false;
     }
@@ -32,7 +32,7 @@ class ConfigurationIsNotCached implements Check
      *
      * @return string
      */
-    public function message(): string
+    public function message(array $config): string
     {
         return 'Your configuration files should not be cached during development. Call "php artisan config:clear" to clear the config cache.';
     }

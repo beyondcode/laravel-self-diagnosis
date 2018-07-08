@@ -16,7 +16,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The example environment variables are set';
     }
@@ -26,7 +26,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         $examples = new Dotenv(base_path(), '.env.example');
         $examples->safeLoad();
@@ -45,7 +45,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'These example environment variables are missing in your .env file, but are defined in your .env.example: '.PHP_EOL.$this->envVariables->implode(PHP_EOL);
     }

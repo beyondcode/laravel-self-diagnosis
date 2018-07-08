@@ -26,7 +26,7 @@ class PhpExtensionsAreInstalled implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The required PHP extensions are installed';
     }
@@ -36,7 +36,7 @@ class PhpExtensionsAreInstalled implements Check
      *
      * @return string
      */
-    public function message(): string
+    public function message(array $config): string
     {
         return 'The following extensions are missing: ' . PHP_EOL . $this->extensions->implode(PHP_EOL);
     }
@@ -46,7 +46,7 @@ class PhpExtensionsAreInstalled implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         $this->extensions = Collection::make([
             'openssl',

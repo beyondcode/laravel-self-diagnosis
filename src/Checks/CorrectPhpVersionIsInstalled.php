@@ -19,7 +19,7 @@ class CorrectPhpVersionIsInstalled implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The correct PHP version is installed';
     }
@@ -30,7 +30,7 @@ class CorrectPhpVersionIsInstalled implements Check
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return version_compare(phpversion(), $this->getRequiredPhpVersion(), '>=');
     }
@@ -41,7 +41,7 @@ class CorrectPhpVersionIsInstalled implements Check
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'You do not have the required PHP version installed.'.PHP_EOL.'Required: '.$this->getRequiredPhpVersion().PHP_EOL.'Used: '.phpversion();
     }

@@ -19,6 +19,6 @@ class StorageDirectoryIsLinkedTest extends TestCase
 
         $check = new StorageDirectoryIsLinked($filesystem);
 
-        $this->assertTrue($check->check());
+        $this->assertTrue($check->check([]));
     }
 }

@@ -13,7 +13,7 @@ class DatabaseCanBeAccessed implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The database can be accessed';
     }
@@ -23,7 +23,7 @@ class DatabaseCanBeAccessed implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         try {
             DB::connection()->getPdo();
@@ -40,7 +40,7 @@ class DatabaseCanBeAccessed implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'The database can not be accessed: '.$this->message;
     }

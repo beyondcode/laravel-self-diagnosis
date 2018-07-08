@@ -10,7 +10,7 @@ interface Check
      * @param array $config
      * @return string
      */
-    public function name(array $config) : string;
+    public function name(array $config): string;
 
     /**
      * Perform the actual verification of this check.
@@ -18,7 +18,7 @@ interface Check
      * @param array $config
      * @return bool
      */
-    public function check(array $config) : bool;
+    public function check(array $config): bool;
 
     /**
      * The error message to display in case the check does not pass.
@@ -26,5 +26,5 @@ interface Check
      * @param array $config
      * @return string
      */
-    public function message(array $config) : string;
+    public function message(array $config): string;
 }

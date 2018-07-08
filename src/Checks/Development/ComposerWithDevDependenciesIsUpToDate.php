@@ -24,7 +24,7 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'Composer dependencies are up to date with the composer.lock file.';
     }
@@ -34,7 +34,7 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         $this->output = $this->composer->installDryRun();
 
@@ -46,7 +46,7 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'Your composer dependencies are not up to date. Call "composer install".' . $this->output;
     }

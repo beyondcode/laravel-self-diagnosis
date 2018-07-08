@@ -11,10 +11,10 @@ class AppKeyIsSetTest extends TestCase
     public function it_checks_app_key_existance()
     {
         $check = app(AppKeyIsSet::class);
-        $this->assertFalse($check->check());
+        $this->assertFalse($check->check([]));
 
         $this->app['config']->set('app.key', 'foo');
 
-        $this->assertTrue($check->check());
+        $this->assertTrue($check->check([]));
     }
 }

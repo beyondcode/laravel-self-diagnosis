@@ -19,7 +19,7 @@ class EnvFileExistsTest extends TestCase
 
         $check = new EnvFileExists($filesystem);
 
-        $this->assertFalse($check->check());
+        $this->assertFalse($check->check([]));
 
 
         $filesystem = \Mockery::mock(Filesystem::class);
@@ -30,6 +30,6 @@ class EnvFileExistsTest extends TestCase
 
         $check = new EnvFileExists($filesystem);
 
-        $this->assertTrue($check->check());
+        $this->assertTrue($check->check([]));
     }
 }

@@ -9,7 +9,7 @@ class AppKeyIsSet implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'App key is set';
     }
@@ -19,7 +19,7 @@ class AppKeyIsSet implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return config('app.key') !== null;
     }
@@ -29,7 +29,7 @@ class AppKeyIsSet implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'The application key is not set. Call "php artisan key:generate" to create it.';
     }

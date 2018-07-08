@@ -13,7 +13,7 @@ class MigrationsAreUpToDate implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The migrations are up to date';
     }
@@ -23,7 +23,7 @@ class MigrationsAreUpToDate implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         try {
             Artisan::call('migrate', ['--pretend' => 'true', '--force' => 'true']);
@@ -40,7 +40,7 @@ class MigrationsAreUpToDate implements Check
      *
      * @return string
      */
-    public function message(): string
+    public function message(array $config): string
     {
         if ($this->databaseError !== null) {
             return 'Unable to check for migrations: ' . $this->databaseError;

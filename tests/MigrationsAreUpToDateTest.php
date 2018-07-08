@@ -18,7 +18,7 @@ class MigrationsAreUpToDateTest extends TestCase
         Artisan::shouldReceive('output')
             ->andReturn('Nothing to migrate.');
 
-        $this->assertTrue($check->check());
+        $this->assertTrue($check->check([]));
     }
     /** @test */
     public function it_detects_that_migrations_need_to_run()
@@ -30,6 +30,6 @@ class MigrationsAreUpToDateTest extends TestCase
         Artisan::shouldReceive('output')
             ->andReturn('CREATE TABLE foo');
 
-        $this->assertFalse($check->check());
+        $this->assertFalse($check->check([]));
     }
 }

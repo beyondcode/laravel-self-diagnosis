@@ -12,7 +12,7 @@ class DebugModeIsNotEnabled implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'Debug mode is not enabled';
     }
@@ -22,7 +22,7 @@ class DebugModeIsNotEnabled implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return config('app.debug') === false;
     }
@@ -32,7 +32,7 @@ class DebugModeIsNotEnabled implements Check
      *
      * @return string
      */
-    public function message(): string
+    public function message(array $config): string
     {
         return 'You should not use debug mode in production. Set APP_DEBUG to false.';
     }

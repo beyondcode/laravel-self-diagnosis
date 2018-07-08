@@ -18,7 +18,7 @@ class DirectoriesHaveCorrectPermissionsTest extends TestCase
 
         $check = new DirectoriesHaveCorrectPermissions($filesystem);
 
-        $this->assertFalse($check->check());
+        $this->assertFalse($check->check([]));
 
 
         $filesystem = \Mockery::mock(Filesystem::class);
@@ -28,6 +28,6 @@ class DirectoriesHaveCorrectPermissionsTest extends TestCase
 
         $check = new DirectoriesHaveCorrectPermissions($filesystem);
 
-        $this->assertTrue($check->check());
+        $this->assertTrue($check->check([]));
     }
 }
