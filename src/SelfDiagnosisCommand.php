@@ -25,7 +25,7 @@ class SelfDiagnosisCommand extends Command
 
     public function handle()
     {
-        $this->runChecks(config('self-diagnosis.checks', []), 'Running Common Checks');
+        $this->runChecks(config('self-diagnosis.checks', []), trans('self-diagnosis::commands.self_diagnosis.common_checks'));
 
         $environmentChecks = config('self-diagnosis.environment_checks.' . app()->environment(), []);
         if (empty($environmentChecks) && array_key_exists(app()->environment(), config('self-diagnosis.environment_aliases'))) {
@@ -33,17 +33,17 @@ class SelfDiagnosisCommand extends Command
             $environmentChecks = config('self-diagnosis.environment_checks.' . $environment, []);
         }
 
-        $this->runChecks($environmentChecks, 'Environment Specific Checks ('.app()->environment().')');
+        $this->runChecks($environmentChecks, trans('self-diagnosis::commands.self_diagnosis.environment_specific_checks', ['environment' => app()->environment()]));
 
         if (count($this->messages)) {
-            $this->output->writeln('The following checks failed:');
+            $this->output->writeln(trans('self-diagnosis::commands.self_diagnosis.failed_checks'));
 
             foreach ($this->messages as $message) {
                 $this->output->writeln('<fg=red>'.$message.'</fg=red>');
                 $this->output->writeln('');
             }
         } else {
-            $this->info('Good job, looks like you are all set up.');
+            $this->info(trans('self-diagnosis::commands.self_diagnosis.success'));
         }
     }
 
@@ -64,7 +64,11 @@ class SelfDiagnosisCommand extends Command
 
             $checkClass = app($check);
 
-            $this->output->write("<fg=yellow>Running check {$current}/{$max}:</fg=yellow> {$checkClass->name($config)}...  ");
+            $this->output->write(trans('self-diagnosis::commands.self_diagnosis.running_check', [
+                'current' => $current,
+                'max' => $max,
+                'name' => $checkClass->name($config),
+            ]));
 
             $this->runCheck($checkClass, $config);
 

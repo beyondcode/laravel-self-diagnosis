@@ -14,7 +14,7 @@ class RoutesAreCached implements Check
      */
     public function name(array $config): string
     {
-        return 'Routes are cached';
+        return trans('self-diagnosis::checks.routes_are_cached.name');
     }
 
     /**
@@ -34,6 +34,6 @@ class RoutesAreCached implements Check
      */
     public function message(array $config): string
     {
-        return 'Your routes should be cached in production. Call "php artisan route:cache" to create the route cache.';
+        return trans('self-diagnosis::checks.routes_are_cached.message');
     }
 }
