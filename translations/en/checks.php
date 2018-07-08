@@ -6,11 +6,11 @@ return [
         'name' => 'App key is set',
     ],
     'composer_with_dev_dependencies_is_up_to_date' => [
-        'message' => 'Your composer dependencies are not up to date. Call "composer install". :more',
+        'message' => 'Your composer dependencies are not up to date. Call "composer install" to update them. :more',
         'name' => 'Composer dependencies (including dev) are up to date',
     ],
     'composer_without_dev_dependencies_is_up_to_date' => [
-        'message' => 'Your composer dependencies are not up to date. Call "composer install". :more',
+        'message' => 'Your composer dependencies are not up to date. Call "composer install" to update them. :more',
         'name' => 'Composer dependencies (without dev) are up to date',
     ],
     'configuration_is_cached' => [
@@ -30,7 +30,7 @@ return [
         'name' => 'The database can be accessed',
     ],
     'debug_mode_is_not_enabled' => [
-        'message' => 'You should not use debug mode in production. Set APP_DEBUG to false.',
+        'message' => 'You should not use debug mode in production. Set "APP_DEBUG" in the .env file to "false".',
         'name' => 'Debug mode is not enabled',
     ],
     'directories_have_correct_permissions' => [
@@ -70,6 +70,6 @@ return [
     ],
     'xdebug_is_not_enabled' => [
         'message' => 'You should not have the "xdebug" PHP extension enabled in production.',
-        'name' => 'The xdebug extension is not enabled',
+        'name' => 'The xdebug extension is disabled',
     ],
 ];
