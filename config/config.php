@@ -30,16 +30,16 @@ return [
      */
     'environment_checks' => [
         'development' => [
-            \BeyondCode\SelfDiagnosis\Checks\Development\ComposerWithDevDependenciesIsUpToDate::class,
-            \BeyondCode\SelfDiagnosis\Checks\Development\ConfigurationIsNotCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\Development\RoutesAreNotCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
         ],
         'production' => [
-            \BeyondCode\SelfDiagnosis\Checks\Production\ComposerWithoutDevDependenciesIsUpToDate::class,
-            \BeyondCode\SelfDiagnosis\Checks\Production\ConfigurationIsCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\Production\DebugModeIsNotEnabled::class,
-            \BeyondCode\SelfDiagnosis\Checks\Production\RoutesAreCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\Production\XDebugIsNotEnabled::class,
+            \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
+            \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\XDebugIsNotEnabled::class,
         ],
     ],
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks\Production;
+namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
 
-class DebugModeIsNotEnabled implements Check
+class RoutesAreNotCached implements Check
 {
 
     /**
@@ -14,7 +14,7 @@ class DebugModeIsNotEnabled implements Check
      */
     public function name(array $config): string
     {
-        return 'Debug mode is not enabled';
+        return 'Routes are not cached';
     }
 
     /**
@@ -24,7 +24,7 @@ class DebugModeIsNotEnabled implements Check
      */
     public function check(array $config): bool
     {
-        return config('app.debug') === false;
+        return app()->routesAreCached() === false;
     }
 
     /**
@@ -34,6 +34,6 @@ class DebugModeIsNotEnabled implements Check
      */
     public function message(array $config): string
     {
-        return 'You should not use debug mode in production. Set APP_DEBUG to false.';
+        return 'Your routes should not be cached during development. Call "php artisan route:clear" to clear the route cache.';
     }
 }

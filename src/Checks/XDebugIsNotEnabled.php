@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks\Production;
+namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
 

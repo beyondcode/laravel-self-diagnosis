@@ -1,10 +1,10 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks\Development;
+namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
 
-class ConfigurationIsNotCached implements Check
+class RoutesAreCached implements Check
 {
 
     /**
@@ -14,7 +14,7 @@ class ConfigurationIsNotCached implements Check
      */
     public function name(array $config): string
     {
-        return 'Configuration is not cached';
+        return 'Routes are cached';
     }
 
     /**
@@ -24,7 +24,7 @@ class ConfigurationIsNotCached implements Check
      */
     public function check(array $config): bool
     {
-        return app()->configurationIsCached() === false;
+        return app()->routesAreCached() === true;
     }
 
     /**
@@ -34,6 +34,6 @@ class ConfigurationIsNotCached implements Check
      */
     public function message(array $config): string
     {
-        return 'Your configuration files should not be cached during development. Call "php artisan config:clear" to clear the config cache.';
+        return 'Your routes should be cached in production. Call "php artisan route:cache" to create the route cache.';
     }
 }

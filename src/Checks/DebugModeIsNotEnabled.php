@@ -1,10 +1,10 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks\Production;
+namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
 
-class ConfigurationIsCached implements Check
+class DebugModeIsNotEnabled implements Check
 {
 
     /**
@@ -14,7 +14,7 @@ class ConfigurationIsCached implements Check
      */
     public function name(array $config): string
     {
-        return 'Configuration is cached';
+        return 'Debug mode is not enabled';
     }
 
     /**
@@ -24,7 +24,7 @@ class ConfigurationIsCached implements Check
      */
     public function check(array $config): bool
     {
-        return app()->configurationIsCached() === true;
+        return config('app.debug') === false;
     }
 
     /**
@@ -34,6 +34,6 @@ class ConfigurationIsCached implements Check
      */
     public function message(array $config): string
     {
-        return 'Your configuration files should be cached in production. Call "php artisan config:cache" to cache the configuration.';
+        return 'You should not use debug mode in production. Set APP_DEBUG to false.';
     }
 }
