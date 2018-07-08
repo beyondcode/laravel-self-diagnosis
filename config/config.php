@@ -8,6 +8,7 @@ return [
     'environment_aliases' => [
         'prod' => 'production',
         'live' => 'production',
+        'local' => 'development',
     ],
 
     /*
