@@ -27,9 +27,10 @@ class SelfDiagnosisCommand extends Command
     {
         $this->runChecks(config('self-diagnosis.checks', []), 'Running Common Checks');
 
-        $environmentChecks = config('self-diagnosis.development', []);
-        if (in_array(app()->environment(), config('self-diagnosis.productionEnvironments'))) {
-            $environmentChecks = config('self-diagnosis.production', []);
+        $environmentChecks = config('self-diagnosis.environment_checks.' . app()->environment(), []);
+        if (empty($environmentChecks) && array_key_exists(app()->environment(), config('self-diagnosis.environment_aliases'))) {
+            $environment = config('self-diagnosis.environment_aliases.' . app()->environment());
+            $environmentChecks = config('self-diagnosis.environment_checks.' . $environment, []);
         }
 
         $this->runChecks($environmentChecks, 'Environment Specific Checks ('.app()->environment().')');
@@ -55,12 +56,20 @@ class SelfDiagnosisCommand extends Command
         $this->output->writeln('| '.$title);
         $this->output->writeln('|-------------------------------------');
 
-        foreach ($checks as $check) {
+        foreach ($checks as $check => $config) {
+            if (is_numeric($check)) {
+                $check = $config;
+                $config = [];
+            }
+            if (!is_array($config)) {
+                $config = (array) $config;
+            }
+
             $checkClass = app($check);
 
-            $this->output->write("<fg=yellow>Running check {$current}/{$max}:</fg=yellow> {$checkClass->name()}...  ");
+            $this->output->write("<fg=yellow>Running check {$current}/{$max}:</fg=yellow> {$checkClass->name($config)}...  ");
 
-            $this->runCheck($checkClass);
+            $this->runCheck($checkClass, $config);
 
             $current++;
         }
@@ -68,14 +77,14 @@ class SelfDiagnosisCommand extends Command
         $this->output->writeln('');
     }
 
-    protected function runCheck(Check $check)
+    protected function runCheck(Check $check, array $config)
     {
-        if ($check->check()) {
+        if ($check->check($config)) {
             $this->output->write('<fg=green>✔</fg=green>');
         } else {
             $this->output->write('<fg=red>✘</fg=red>');
 
-            $this->messages[] = $check->message();
+            $this->messages[] = $check->message($config);
         }
 
         $this->output->write(PHP_EOL);
