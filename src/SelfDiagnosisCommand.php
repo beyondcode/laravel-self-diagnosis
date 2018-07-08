@@ -61,9 +61,6 @@ class SelfDiagnosisCommand extends Command
                 $check = $config;
                 $config = [];
             }
-            if (!is_array($config)) {
-                $config = (array) $config;
-            }
 
             $checkClass = app($check);
 
