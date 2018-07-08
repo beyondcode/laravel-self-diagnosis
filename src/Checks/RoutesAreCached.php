@@ -2,14 +2,13 @@
 
 namespace BeyondCode\SelfDiagnosis\Checks;
 
-use BeyondCode\SelfDiagnosis\Checks\Check;
-
 class RoutesAreCached implements Check
 {
 
     /**
      * The name of the check.
      *
+     * @param array $config
      * @return string
      */
     public function name(array $config): string
@@ -20,6 +19,7 @@ class RoutesAreCached implements Check
     /**
      * Perform the actual verification of this check.
      *
+     * @param array $config
      * @return bool
      */
     public function check(array $config): bool
@@ -30,6 +30,7 @@ class RoutesAreCached implements Check
     /**
      * The error message to display in case the check does not pass.
      *
+     * @param array $config
      * @return string
      */
     public function message(array $config): string

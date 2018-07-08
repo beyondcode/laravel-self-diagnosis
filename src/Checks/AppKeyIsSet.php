@@ -7,6 +7,7 @@ class AppKeyIsSet implements Check
     /**
      * The name of the check.
      *
+     * @param array $config
      * @return string
      */
     public function name(array $config): string
@@ -17,6 +18,7 @@ class AppKeyIsSet implements Check
     /**
      * Perform the actual verification of this check.
      *
+     * @param array $config
      * @return bool
      */
     public function check(array $config): bool
@@ -27,6 +29,7 @@ class AppKeyIsSet implements Check
     /**
      * The error message to display in case the check does not pass.
      *
+     * @param array $config
      * @return string
      */
     public function message(array $config): string

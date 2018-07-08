@@ -4,7 +4,6 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 use Dotenv\Dotenv;
 use Illuminate\Support\Collection;
-use Illuminate\Filesystem\Filesystem;
 
 class ExampleEnvironmentVariablesAreSet implements Check
 {
@@ -14,6 +13,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
     /**
      * The name of the check.
      *
+     * @param array $config
      * @return string
      */
     public function name(array $config): string
@@ -24,6 +24,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
     /**
      * Perform the actual verification of this check.
      *
+     * @param array $config
      * @return bool
      */
     public function check(array $config): bool
@@ -43,6 +44,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
     /**
      * The error message to display in case the check does not pass.
      *
+     * @param array $config
      * @return string
      */
     public function message(array $config): string
