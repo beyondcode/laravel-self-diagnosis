@@ -28,7 +28,13 @@ class DatabaseCanBeAccessed implements Check
     public function check(array $config): bool
     {
         try {
-            DB::connection()->getPdo();
+            if (array_get($config, 'default_connection', true)) {
+                DB::connection()->getPdo();
+            }
+
+            foreach (array_get($config, 'connections', []) as $connection) {
+                DB::connection($connection)->getPdo();
+            }
 
             return true;
         } catch (\Exception $e) {
