@@ -15,7 +15,7 @@ class MigrationsAreUpToDate implements Check
      */
     public function name(array $config): string
     {
-        return 'The migrations are up to date';
+        return trans('self-diagnosis::checks.migrations_are_up_to_date.name');
     }
 
     /**
@@ -43,8 +43,10 @@ class MigrationsAreUpToDate implements Check
     public function message(array $config): string
     {
         if ($this->databaseError !== null) {
-            return 'Unable to check for migrations: ' . $this->databaseError;
+            return trans('self-diagnosis::checks.migrations_are_up_to_date.message.unable_to_check', [
+                'reason' => $this->databaseError,
+            ]);
         }
-        return 'You need to update your migrations. Call "php artisan migrate".';
+        return trans('self-diagnosis::checks.migrations_are_up_to_date.message.need_to_migrate');
     }
 }

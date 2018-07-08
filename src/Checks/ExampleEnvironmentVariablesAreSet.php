@@ -18,7 +18,7 @@ class ExampleEnvironmentVariablesAreSet implements Check
      */
     public function name(array $config): string
     {
-        return 'The example environment variables are set';
+        return trans('self-diagnosis::checks.example_environment_variables_are_set.name');
     }
 
     /**
@@ -47,6 +47,8 @@ class ExampleEnvironmentVariablesAreSet implements Check
      */
     public function message(array $config): string
     {
-        return 'These example environment variables are missing in your .env file, but are defined in your .env.example: '.PHP_EOL.$this->envVariables->implode(PHP_EOL);
+        return trans('self-diagnosis::checks.example_environment_variables_are_set.message', [
+            'variables' => $this->envVariables->implode(PHP_EOL),
+        ]);
     }
 }

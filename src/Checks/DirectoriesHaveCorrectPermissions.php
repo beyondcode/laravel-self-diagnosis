@@ -29,7 +29,7 @@ class DirectoriesHaveCorrectPermissions implements Check
      */
     public function name(array $config): string
     {
-        return 'The directories have the correct permissions.';
+        return trans('self-diagnosis::checks.directories_have_correct_permissions.name');
     }
 
     /**
@@ -39,7 +39,9 @@ class DirectoriesHaveCorrectPermissions implements Check
      */
     public function message(array $config): string
     {
-        return 'The following directories are not writable: '.PHP_EOL.$this->paths->implode(PHP_EOL);
+        return trans('self-diagnosis::checks.directories_have_correct_permissions.message', [
+            'directories' => $this->paths->implode(PHP_EOL),
+        ]);
     }
 
     /**

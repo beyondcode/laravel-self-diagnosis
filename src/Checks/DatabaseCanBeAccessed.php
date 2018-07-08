@@ -15,7 +15,7 @@ class DatabaseCanBeAccessed implements Check
      */
     public function name(array $config): string
     {
-        return 'The database can be accessed';
+        return trans('self-diagnosis::checks.database_can_be_accessed.name');
     }
 
     /**
@@ -42,6 +42,8 @@ class DatabaseCanBeAccessed implements Check
      */
     public function message(array $config): string
     {
-        return 'The database can not be accessed: '.$this->message;
+        return trans('self-diagnosis::checks.database_can_be_accessed.message', [
+            'error' => $this->message,
+        ]);
     }
 }

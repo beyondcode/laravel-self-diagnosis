@@ -13,6 +13,12 @@ class SelfDiagnosisServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
 
+            $this->loadTranslationsFrom(__DIR__.'/../translations', 'self-diagnosis');
+
+            $this->publishes([
+                __DIR__.'/../translations' => resource_path('lang/vendor/self-diagnosis'),
+            ], 'translations');
+
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('self-diagnosis.php'),
             ], 'config');
