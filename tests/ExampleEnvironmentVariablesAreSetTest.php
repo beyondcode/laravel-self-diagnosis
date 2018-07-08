@@ -15,6 +15,6 @@ class ExampleEnvironmentVariablesAreSetTest extends TestCase
         $check = new ExampleEnvironmentVariablesAreSet();
 
         $this->assertFalse($check->check());
-        $this->assertSame('These example environment variables are missing in your .env file, but are defined in your .env.example: '.PHP_EOL.'KEY_TWO', $check->message());
+        $this->assertSame('self-diagnosis::checks.example_environment_variables_are_set.message', $check->message());
     }
 }
