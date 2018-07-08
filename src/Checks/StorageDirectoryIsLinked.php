@@ -19,7 +19,7 @@ class StorageDirectoryIsLinked implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The storage directory is linked.';
     }
@@ -29,7 +29,7 @@ class StorageDirectoryIsLinked implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'The storage directory is not linked. Use "php artisan storage:link"';
     }
@@ -39,7 +39,7 @@ class StorageDirectoryIsLinked implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         try {
             return $this->filesystem->isDirectory(public_path('storage'));

@@ -20,7 +20,7 @@ class EnvFileExists implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The environment file exists';
     }
@@ -30,7 +30,7 @@ class EnvFileExists implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return $this->filesystem->exists(base_path('.env'));
     }
@@ -40,7 +40,7 @@ class EnvFileExists implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'These .env file does not exist. Please copy your .env.example file as .env';
     }

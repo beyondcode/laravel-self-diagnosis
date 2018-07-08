@@ -33,7 +33,7 @@ Here is an example output of the command:
 
 - Is the configuration cached?
 - Are the routes cached?
-- Is the xdebug extension disabled?
+- Is the xdebug PHP extension disabled?
 - Is APP_DEBUG set to false?
 
 ## Installation
@@ -70,12 +70,11 @@ This will publish a `self-diagnosis.php` file in your `config` folder. This file
 return [
 
     /*
-     * List of all the environment names that are considered as "production".
+     * A list of environment aliases mapped to the actual environment configuration.
      */
-    'productionEnvironments' => [
-        'prod',
-        'production',
-        'live',
+    'environment_aliases' => [
+        'prod' => 'production',
+        'live' => 'production',
     ],
 
     /*
@@ -85,32 +84,30 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
-        \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
-        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class,
+        \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
-        \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
+        \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
+        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
     ],
 
     /*
-     * Production environment specific checks.
+     * Environment specific checks that will only be performed for the corresponding environment.
      */
-    'production' => [
-        \BeyondCode\SelfDiagnosis\Checks\Production\ComposerWithoutDevDependenciesIsUpToDate::class,
-        \BeyondCode\SelfDiagnosis\Checks\Production\ConfigurationIsCached::class,
-        \BeyondCode\SelfDiagnosis\Checks\Production\RoutesAreCached::class,
-        \BeyondCode\SelfDiagnosis\Checks\Production\XDebugIsNotEnabled::class,
-        \BeyondCode\SelfDiagnosis\Checks\Production\DebugModeIsNotEnabled::class,
-    ],
-
-    /*
-     * Development environment specific checks.
-     */
-    'development' => [
-        \BeyondCode\SelfDiagnosis\Checks\Development\ComposerWithDevDependenciesIsUpToDate::class,
-        \BeyondCode\SelfDiagnosis\Checks\Development\ConfigurationIsNotCached::class,
-        \BeyondCode\SelfDiagnosis\Checks\Development\RoutesAreNotCached::class,
+    'environment_checks' => [
+        'development' => [
+            \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
+        ],
+        'production' => [
+            \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
+            \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\XDebugIsNotEnabled::class,
+        ],
     ],
 
 ];
@@ -118,7 +115,7 @@ return [
 
 ### Custom Checks
 
-You can create custom checks, by implementing the `BeyondCode\SelfDiagnosis\Checks\Check` interface and adding the class to the config file.
+You can create custom checks, by implementing the [`BeyondCode\SelfDiagnosis\Checks\Check`](src/Checks/Check.php) interface and adding the class to the config file.
 Like this:
 
 ```php
@@ -131,9 +128,10 @@ class MyCustomCheck implements Check
     /**
      * The name of the check.
      *
+     * @param array $config
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'My custom check.';
     }
@@ -141,9 +139,10 @@ class MyCustomCheck implements Check
     /**
      * Perform the actual verification of this check.
      *
+     * @param array $config
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return true;
     }
@@ -151,9 +150,10 @@ class MyCustomCheck implements Check
     /**
      * The error message to display in case the check does not pass.
      *
+     * @param array $config
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'This is the error message that users see if "check" returns false.';
     }

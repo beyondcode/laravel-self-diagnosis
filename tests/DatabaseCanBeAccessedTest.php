@@ -12,13 +12,13 @@ class DatabaseCanBeAccessedTest extends TestCase
     public function it_checks_db_access()
     {
         $check = app(DatabaseCanBeAccessed::class);
-        $this->assertFalse($check->check());
+        $this->assertFalse($check->check([]));
 
         $mock = \Mockery::mock(\Illuminate\Database\Connection::class);
         $mock->shouldReceive('getPdo');
 
         DB::shouldReceive('connection')->andReturn($mock);
 
-        $this->assertTrue($check->check());
+        $this->assertTrue($check->check([]));
     }
 }

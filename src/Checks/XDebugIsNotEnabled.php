@@ -1,18 +1,17 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks\Production;
+namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
 
 class XDebugIsNotEnabled implements Check
 {
-
     /**
      * The name of the check.
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The xdebug extension is not active.';
     }
@@ -22,7 +21,7 @@ class XDebugIsNotEnabled implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return extension_loaded('xdebug') === false;
     }
@@ -32,7 +31,7 @@ class XDebugIsNotEnabled implements Check
      *
      * @return string
      */
-    public function message(): string
+    public function message(array $config): string
     {
         return 'You should not have the "xdebug" PHP extension activated in production.';
     }

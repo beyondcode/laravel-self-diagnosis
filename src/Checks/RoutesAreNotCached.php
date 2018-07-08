@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Checks\Development;
+namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
 
@@ -12,7 +12,7 @@ class RoutesAreNotCached implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'Routes are not cached';
     }
@@ -22,7 +22,7 @@ class RoutesAreNotCached implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
         return app()->routesAreCached() === false;
     }
@@ -32,7 +32,7 @@ class RoutesAreNotCached implements Check
      *
      * @return string
      */
-    public function message(): string
+    public function message(array $config): string
     {
         return 'Your routes should not be cached during development. Call "php artisan route:clear" to clear the route cache.';
     }

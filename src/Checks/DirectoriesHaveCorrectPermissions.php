@@ -27,7 +27,7 @@ class DirectoriesHaveCorrectPermissions implements Check
      *
      * @return string
      */
-    public function name(): string
+    public function name(array $config): string
     {
         return 'The directories have the correct permissions.';
     }
@@ -37,7 +37,7 @@ class DirectoriesHaveCorrectPermissions implements Check
      *
      * @return string
      */
-    public function message() : string
+    public function message(array $config): string
     {
         return 'The following directories are not writable: '.PHP_EOL.$this->paths->implode(PHP_EOL);
     }
@@ -47,12 +47,9 @@ class DirectoriesHaveCorrectPermissions implements Check
      *
      * @return bool
      */
-    public function check(): bool
+    public function check(array $config): bool
     {
-        $this->paths = Collection::make([
-            storage_path(),
-            base_path('bootstrap/cache')
-        ]);
+        $this->paths = Collection::make(array_get($config, 'directories', []));
 
         $this->paths = $this->paths->reject(function ($path) {
             return $this->filesystem->isWritable($path);
