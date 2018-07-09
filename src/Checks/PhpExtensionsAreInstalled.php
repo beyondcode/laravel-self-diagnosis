@@ -29,7 +29,7 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function name(array $config): string
     {
-        return trans('self-dianosis::checks.php_extensions_are_installed.name');
+        return trans('self-diagnosis::checks.php_extensions_are_installed.name');
     }
 
     /**
@@ -40,7 +40,7 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function message(array $config): string
     {
-        return trans('self-dianosis::checks.php_extensions_are_installed.message', [
+        return trans('self-diagnosis::checks.php_extensions_are_installed.message', [
             'extensions' => $this->extensions->implode(PHP_EOL),
         ]);
     }
