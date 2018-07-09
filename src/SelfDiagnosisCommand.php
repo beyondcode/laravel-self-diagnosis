@@ -36,7 +36,7 @@ class SelfDiagnosisCommand extends Command
         $this->runChecks($environmentChecks, trans('self-diagnosis::commands.self_diagnosis.environment_specific_checks', ['environment' => app()->environment()]));
 
         if (count($this->messages)) {
-            $this->output->writeln(trans('self-diagnosis::commands.self_diagnosis.failed_checks'));
+            $this->error(trans('self-diagnosis::commands.self_diagnosis.failed_checks'));
 
             foreach ($this->messages as $message) {
                 $this->output->writeln('<fg=red>'.$message.'</fg=red>');
