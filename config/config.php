@@ -17,7 +17,10 @@ return [
     'checks' => [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
-        \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
+        \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class => [
+            'default_connection' => true,
+            'connections' => [],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class => [
             'directories' => [
                 storage_path(),
@@ -27,7 +30,18 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
-        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class,
+        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class => [
+            'extensions' => [
+                'openssl',
+                'PDO',
+                'mbstring',
+                'tokenizer',
+                'xml',
+                'ctype',
+                'json',
+            ],
+            'include_composer_extensions' => true,
+        ],
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
     ],
 
@@ -44,8 +58,12 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
             \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
+            \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled::class => [
+                'extensions' => [
+                    'xdebug',
+                ],
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\XDebugIsNotEnabled::class,
         ],
     ],
 

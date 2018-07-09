@@ -53,17 +53,11 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function check(array $config): bool
     {
-        $this->extensions = Collection::make([
-            'openssl',
-            'PDO',
-            'mbstring',
-            'tokenizer',
-            'xml',
-            'ctype',
-            'json'
-        ]);
-        $this->extensions = $this->extensions->merge($this->getExtensionsRequiredInComposerFile());
-        $this->extensions = $this->extensions->unique();
+        $this->extensions = Collection::make(array_get($config, 'extensions', []));
+        if (array_get($config, 'include_composer_extensions', false)) {
+            $this->extensions = $this->extensions->merge($this->getExtensionsRequiredInComposerFile());
+            $this->extensions = $this->extensions->unique();
+        }
         $this->extensions = $this->extensions->reject(function ($ext) {
             return extension_loaded($ext);
         });

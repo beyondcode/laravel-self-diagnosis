@@ -52,6 +52,10 @@ return [
         ],
         'name' => 'Die Migrationen sind aktuell',
     ],
+    'php_extensions_are_disabled' => [
+        'message' => 'Die folgenden Erweiterungen sind noch immer aktiviert:' . PHP_EOL . ':extensions',
+        'name' => 'Unerwünschte PHP Erweiterungen sind deaktiviert',
+    ],
     'php_extensions_are_installed' => [
         'message' => 'Die folgenden Erweiterungen fehlen:' . PHP_EOL . ':extensions',
         'name' => 'Die benötigten PHP Erweiterungen sind installiert',
@@ -67,9 +71,5 @@ return [
     'storage_directory_is_linked' => [
         'message' => 'Das Speicherverzeichnis ist nicht verlinkt. Nutze "php artisan storage:link", um eine symbolische Verknüpfung zu erstellen.',
         'name' => 'Das Speicherverzeichnis ist verlinkt',
-    ],
-    'xdebug_is_not_enabled' => [
-        'message' => 'Die "xdebug" PHP Erweiterung sollte im Produktivbetrieb nicht aktiviert sein.',
-        'name' => 'Die xdebug PHP Erweiterung ist deaktiviert',
     ],
 ];

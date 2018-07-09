@@ -52,6 +52,10 @@ return [
         ],
         'name' => 'The migrations are up to date',
     ],
+    'php_extensions_are_disabled' => [
+        'message' => 'The following extensions are still enabled:' . PHP_EOL . ':extensions',
+        'name' => 'Unwanted PHP extensions are disabled',
+    ],
     'php_extensions_are_installed' => [
         'message' => 'The following extensions are missing:' . PHP_EOL . ':extensions',
         'name' => 'The required PHP extensions are installed',
@@ -67,9 +71,5 @@ return [
     'storage_directory_is_linked' => [
         'message' => 'The storage directory is not linked. Use "php artisan storage:link" to create a symbolic link.',
         'name' => 'The storage directory is linked',
-    ],
-    'xdebug_is_not_enabled' => [
-        'message' => 'You should not have the "xdebug" PHP extension enabled in production.',
-        'name' => 'The xdebug extension is disabled',
     ],
 ];

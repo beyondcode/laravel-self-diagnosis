@@ -75,6 +75,7 @@ return [
     'environment_aliases' => [
         'prod' => 'production',
         'live' => 'production',
+        'local' => 'development',
     ],
 
     /*
@@ -83,12 +84,31 @@ return [
     'checks' => [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
-        \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class,
-        \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class,
+        \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class => [
+            'default_connection' => true,
+            'connections' => [],
+        ],
+        \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class => [
+            'directories' => [
+                storage_path(),
+                base_path('bootstrap/cache'),
+            ],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
-        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class,
+        \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class => [
+            'extensions' => [
+                'openssl',
+                'PDO',
+                'mbstring',
+                'tokenizer',
+                'xml',
+                'ctype',
+                'json',
+            ],
+            'include_composer_extensions' => true,
+        ],
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
     ],
 
@@ -105,13 +125,32 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
             \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
+            \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled::class => [
+                'extensions' => [
+                    'xdebug',
+                ],
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\XDebugIsNotEnabled::class,
         ],
     ],
 
 ];
 ```
+
+#### Available Configuration Options
+
+The following options are available for the individual checks:
+
+- [`BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed`](src/Checks/DatabaseCanBeAccessed.php)
+  - **default_connection** *(boolean, default: `true`)*: if the default connection should be checked
+  - **connections** *(array, list of connection names like `['mysql', 'sqlsrv']`, default: `[]`)*: additional connections to check
+- [`BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions`](src/Checks/DirectoriesHaveCorrectPermissions.php)
+  - **directories** *(array, list of directory paths like `[storage_path(), base_path('bootstrap/cache')]`, default: `[]`)*: directories to check
+- [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled`](src/Checks/PhpExtensionsAreDisabled.php)
+  - **extensions** *(array, list of extension names like `['xdebug', 'zlib']`, default: `[]`)*: extensions to check
+- [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled`](src/Checks/PhpExtensionsAreInstalled.php)
+  - **extensions** *(array, list of extension names like `['openssl', 'PDO']`, default: `[]`)*: extensions to check
+  - **include_composer_extensions** *(boolean, default: `false`)*: if required extensions defined in `composer.json` should be checked
 
 ### Custom Checks
 
