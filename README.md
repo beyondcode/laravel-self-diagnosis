@@ -96,6 +96,12 @@ return [
         ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
+        \BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled::class => [
+            'required_locales' => [
+                'en_US',
+                'en_US.utf8',
+            ],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class => [
             'extensions' => [
@@ -146,6 +152,8 @@ The following options are available for the individual checks:
   - **connections** *(array, list of connection names like `['mysql', 'sqlsrv']`, default: `[]`)*: additional connections to check
 - [`BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions`](src/Checks/DirectoriesHaveCorrectPermissions.php)
   - **directories** *(array, list of directory paths like `[storage_path(), base_path('bootstrap/cache')]`, default: `[]`)*: directories to check
+- [`BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled`](src/Checks/LocalesAreInstalled.php)
+  - **required_locales** *(array, list of locales like `['en_US', 'en_US.utf8']`, default: `[]`)*: locales to check
 - [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled`](src/Checks/PhpExtensionsAreDisabled.php)
   - **extensions** *(array, list of extension names like `['xdebug', 'zlib']`, default: `[]`)*: extensions to check
 - [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled`](src/Checks/PhpExtensionsAreInstalled.php)

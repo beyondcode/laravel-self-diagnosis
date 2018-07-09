@@ -45,6 +45,15 @@ return [
         'message' => 'Folgende Umgebungsvariablen fehlen im .env Umgebungsfile, sind aber in .env.example definiert:' . PHP_EOL . ':variables',
         'name' => 'Die Beispiel-Umgebungsvariablen sind gesetzt',
     ],
+    'locales_are_installed' => [
+        'message' => [
+            'cannot_run_on_windows' => 'Dieser Check kann unter Windows nicht ausgeführt werden..',
+            'locale_command_not_available' => 'Der Befehl "locale -a" ist auf dem aktuellen System nicht verfügbar.',
+            'missing_locales' => 'Folgende Sprachumgebungen (locales) fehlen:' . PHP_EOL . ':locales',
+            'shell_exec_not_available' => 'Die Funktion "shell_exec" ist entweder nicht definiert oder deaktiviert, daher können die Sprachumgebungen nicht abgefragt werden.',
+        ],
+        'name' => 'Benötigte Sprachumgebungen sind installiert',
+    ],
     'migrations_are_up_to_date' => [
         'message' => [
             'need_to_migrate' => 'Die Datenbank muss aktualisiert werden. Nutze "php artisan migrate", um die Migrationen einzuspielen.',

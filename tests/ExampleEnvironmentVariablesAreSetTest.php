@@ -8,7 +8,7 @@ use BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet;
 
 class ExampleEnvironmentVariablesAreSetTest extends TestCase
 {
-    public function getPackageProviders()
+    public function getPackageProviders($app)
     {
         return [
             SelfDiagnosisServiceProvider::class,
