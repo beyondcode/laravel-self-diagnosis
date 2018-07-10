@@ -6,8 +6,9 @@ use Illuminate\Support\Collection;
 
 class PhpExtensionsAreDisabled implements Check
 {
-
-    /** @var Collection */
+    /**
+     * @var Collection
+     */
     private $extensions;
 
     /**

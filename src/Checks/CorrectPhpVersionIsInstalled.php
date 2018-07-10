@@ -6,9 +6,16 @@ use Illuminate\Filesystem\Filesystem;
 
 class CorrectPhpVersionIsInstalled implements Check
 {
-    /** @var Filesystem */
+    /**
+     * @var Filesystem
+     */
     private $filesystem;
 
+    /**
+     * CorrectPhpVersionIsInstalled constructor.
+     *
+     * @param Filesystem $filesystem
+     */
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;

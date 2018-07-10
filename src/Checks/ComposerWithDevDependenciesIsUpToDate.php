@@ -6,12 +6,21 @@ use BeyondCode\SelfDiagnosis\Composer;
 
 class ComposerWithDevDependenciesIsUpToDate implements Check
 {
-    /** @var Composer */
+    /**
+     * @var Composer
+     */
     private $composer;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $output;
 
+    /**
+     * ComposerWithDevDependenciesIsUpToDate constructor.
+     *
+     * @param Composer $composer
+     */
     public function __construct(Composer $composer)
     {
         $this->composer = $composer;

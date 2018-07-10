@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class SelfDiagnosisServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Bootstrap package services.
      */
     public function boot()
     {

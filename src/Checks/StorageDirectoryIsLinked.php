@@ -6,9 +6,16 @@ use Illuminate\Filesystem\Filesystem;
 
 class StorageDirectoryIsLinked implements Check
 {
-    /** @var Filesystem */
+    /**
+     * @var Filesystem
+     */
     private $filesystem;
 
+    /**
+     * StorageDirectoryIsLinked constructor.
+     *
+     * @param Filesystem $filesystem
+     */
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;

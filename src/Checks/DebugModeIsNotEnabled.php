@@ -4,7 +4,6 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 class DebugModeIsNotEnabled implements Check
 {
-
     /**
      * The name of the check.
      *

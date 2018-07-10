@@ -21,8 +21,16 @@ class SelfDiagnosisCommand extends Command
      */
     protected $description = 'Perform application self diagnosis.';
 
+    /**
+     * Messages stack.
+     *
+     * @var string[]
+     */
     private $messages = [];
 
+    /**
+     * Execute the console command.
+     */
     public function handle()
     {
         $this->runChecks(config('self-diagnosis.checks', []), trans('self-diagnosis::commands.self_diagnosis.common_checks'));
@@ -78,6 +86,12 @@ class SelfDiagnosisCommand extends Command
         $this->output->writeln('');
     }
 
+    /**
+     * Make check run.
+     *
+     * @param Check $check
+     * @param array $config
+     */
     protected function runCheck(Check $check, array $config)
     {
         if ($check->check($config)) {
