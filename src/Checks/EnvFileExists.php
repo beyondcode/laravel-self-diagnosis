@@ -6,10 +6,16 @@ use Illuminate\Filesystem\Filesystem;
 
 class EnvFileExists implements Check
 {
-
-    /** @var Filesystem */
+    /**
+     * @var Filesystem
+     */
     private $filesystem;
 
+    /**
+     * EnvFileExists constructor.
+     *
+     * @param Filesystem $filesystem
+     */
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;

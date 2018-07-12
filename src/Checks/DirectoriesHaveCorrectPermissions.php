@@ -7,14 +7,19 @@ use Illuminate\Filesystem\Filesystem;
 
 class DirectoriesHaveCorrectPermissions implements Check
 {
-    /** @var Filesystem */
+    /**
+     * @var Filesystem
+     */
     private $filesystem;
 
-    /** @var Collection */
+    /**
+     * @var Collection
+     */
     private $paths;
 
     /**
      * DirectoriesHaveCorrectPermissions constructor.
+     *
      * @param Filesystem $filesystem
      */
     public function __construct(Filesystem $filesystem)

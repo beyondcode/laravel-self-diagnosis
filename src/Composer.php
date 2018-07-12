@@ -4,6 +4,11 @@ namespace BeyondCode\SelfDiagnosis;
 
 class Composer extends \Illuminate\Support\Composer
 {
+    /**
+     * @param string|null $options
+     *
+     * @return string
+     */
     public function installDryRun(string $options = null)
     {
         $process = $this->getProcess();

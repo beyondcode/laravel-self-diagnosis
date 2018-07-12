@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\Artisan;
 
 class MigrationsAreUpToDate implements Check
 {
-    private $databaseError = null;
+    /**
+     * @var string|null
+     */
+    private $databaseError;
 
     /**
      * The name of the check.

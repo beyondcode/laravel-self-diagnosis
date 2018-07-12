@@ -7,12 +7,18 @@ use Illuminate\Support\Collection;
 
 class PhpExtensionsAreInstalled implements Check
 {
-
     const EXT = 'ext-';
 
-    /** @var Filesystem */
+    /**
+     * @var Filesystem
+     */
     private $filesystem;
 
+    /**
+     * PhpExtensionsAreInstalled constructor.
+     *
+     * @param Filesystem $filesystem
+     */
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;
@@ -84,5 +90,4 @@ class PhpExtensionsAreInstalled implements Check
         }
         return array_unique($extensions);
     }
-
 }

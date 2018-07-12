@@ -7,7 +7,9 @@ use Illuminate\Support\Collection;
 
 class ExampleEnvironmentVariablesAreSet implements Check
 {
-    /** @var Collection */
+    /**
+     * @var Collection
+     */
     private $envVariables;
 
     /**

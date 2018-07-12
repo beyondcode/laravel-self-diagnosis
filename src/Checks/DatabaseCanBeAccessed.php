@@ -2,10 +2,13 @@
 
 namespace BeyondCode\SelfDiagnosis\Checks;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseCanBeAccessed implements Check
 {
+    /**
+     * @var string
+     */
     private $message;
 
     /**

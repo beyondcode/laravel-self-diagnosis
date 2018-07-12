@@ -4,7 +4,6 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 class ConfigurationIsCached implements Check
 {
-
     /**
      * The name of the check.
      *

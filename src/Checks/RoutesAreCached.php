@@ -4,7 +4,6 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 class RoutesAreCached implements Check
 {
-
     /**
      * The name of the check.
      *
