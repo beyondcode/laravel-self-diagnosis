@@ -29,6 +29,12 @@ return [
         ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
+        \BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled::class => [
+            'required_locales' => [
+                'en_US',
+                'en_US.utf8',
+            ],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class => [
             'extensions' => [
