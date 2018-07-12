@@ -48,6 +48,10 @@ return [
             ],
             'include_composer_extensions' => true,
         ],
+        \BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
+            'default_connection' => true,
+            'connections' => [],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
     ],
 

@@ -69,6 +69,10 @@ return [
         'message' => 'The following extensions are missing:' . PHP_EOL . ':extensions',
         'name' => 'The required PHP extensions are installed',
     ],
+    'redis_can_be_accessed' => [
+        'message' => 'The Redis cache can not be accessed: :error',
+        'name' => 'The Redis cache can be accessed',
+    ],
     'routes_are_cached' => [
         'message' => 'Your routes should be cached in production for better performance. Call "php artisan route:cache" to create the route cache.',
         'name' => 'Routes are cached',

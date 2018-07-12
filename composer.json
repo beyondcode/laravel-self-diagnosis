@@ -24,7 +24,8 @@
         "mockery/mockery": "^1.0",
         "larapack/dd": "^1.0",
         "orchestra/testbench": "~3.5",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "predis/predis": "^1.1"
     },
     "autoload": {
         "psr-4": {
