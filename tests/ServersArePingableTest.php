@@ -24,20 +24,6 @@ class ServersArePingableTest extends TestCase
     }
 
     /** @test */
-    public function it_succeeds_when_all_all_servers_are_pingable()
-    {
-        $config = ['servers' => [
-            '127.0.0.1',
-            'localhost',
-            ['host' => '127.0.0.1'],
-            ['host' => 'localhost']
-        ]];
-
-        $check = new ServersArePingable();
-        $this->assertTrue($check->check($config));
-    }
-
-    /** @test */
     public function it_fails_when_numeric_server_host_is_given()
     {
         $config = ['servers' => [1234567890]];
