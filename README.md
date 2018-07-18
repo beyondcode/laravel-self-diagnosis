@@ -123,12 +123,16 @@ return [
      */
     'environment_checks' => [
         'development' => [
-            \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class => [
+				'additional_options' => '--ignore-platform-reqs',
+			],
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
         ],
         'production' => [
-            \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class => [
+				'additional_options' => '--ignore-platform-reqs',
+			],
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
             \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
             \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled::class => [
@@ -147,6 +151,10 @@ return [
 
 The following options are available for the individual checks:
 
+- [`BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate`](src/Checks/ComposerWithDevDependenciesIsUpToDate.php)
+  - **additional_options** *(string, optional parameters like `'--ignore-platform-reqs'`)*: optional arguments for composer
+- [`BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate`](src/Checks/ComposerWithoutDevDependenciesIsUpToDate.php)
+  - **additional_options** *(string, optional parameters like `'--ignore-platform-reqs'`)*: optional arguments for composer
 - [`BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed`](src/Checks/DatabaseCanBeAccessed.php)
   - **default_connection** *(boolean, default: `true`)*: if the default connection should be checked
   - **connections** *(array, list of connection names like `['mysql', 'sqlsrv']`, default: `[]`)*: additional connections to check
