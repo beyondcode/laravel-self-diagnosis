@@ -137,6 +137,14 @@ return [
                 ],
             ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\ServersArePingable::class => [
+                'servers' => [
+                    'www.google.com',
+                    ['host' => 'www.google.com', 'port' => 8080],
+                    '8.8.8.8',
+                    ['host' => '8.8.8.8', 'port' => 8080, 'timeout' => 5],
+                ],
+            ],
         ],
     ],
 
@@ -159,6 +167,8 @@ The following options are available for the individual checks:
 - [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled`](src/Checks/PhpExtensionsAreInstalled.php)
   - **extensions** *(array, list of extension names like `['openssl', 'PDO']`, default: `[]`)*: extensions to check
   - **include_composer_extensions** *(boolean, default: `false`)*: if required extensions defined in `composer.json` should be checked
+- [`BeyondCode\SelfDiagnosis\Checks\ServersArePingable`](src/Checks/ServersArePingable.php)
+  - **servers** *(array, list of servers and parameters like `['google.com', ['host' => 'google.com', 'port' => 8080]]`)*: servers to ping
 
 ### Custom Checks
 

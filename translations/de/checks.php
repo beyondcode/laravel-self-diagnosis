@@ -77,6 +77,10 @@ return [
         'message' => 'Die Routen sollten während der Entwicklung nicht gecached sein. Nutze "php artisan route:clear", um den Routen-Cache zu leeren.',
         'name' => 'Routen sind nicht gecached',
     ],
+    'servers_are_pingable' => [
+        'message' => "Der Server ':host' (Port: :port) ist nicht erreichbar (Timeout nach :timeout Sekunden).",
+        'name' => 'Benötigte Server sind pingbar',
+    ],
     'storage_directory_is_linked' => [
         'message' => 'Das Speicherverzeichnis ist nicht verlinkt. Nutze "php artisan storage:link", um eine symbolische Verknüpfung zu erstellen.',
         'name' => 'Das Speicherverzeichnis ist verlinkt',
