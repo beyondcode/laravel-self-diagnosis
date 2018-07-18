@@ -70,12 +70,12 @@ return [
                 ],
             ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning::class => [
-                'programs' => [
-                    'horizon',
-                ],
-                'restarted_within' => 300, // max seconds since last restart, 0 to disable check
-            ],
+            //\BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning::class => [
+            //    'programs' => [
+            //        'horizon',
+            //    ],
+            //    'restarted_within' => 300,
+            //],
         ],
     ],
 
