@@ -85,6 +85,10 @@ return [
         'message' => 'Your routes should not be cached during development. Call "php artisan route:clear" to clear the route cache.',
         'name' => 'Routes are not cached',
     ],
+    'servers_are_pingable' => [
+        'message' => "The server ':host' (port: :port) is not reachable (timeout after :timeout seconds).",
+        'name' => 'Required servers are pingable',
+    ],
     'storage_directory_is_linked' => [
         'message' => 'The storage directory is not linked. Use "php artisan storage:link" to create a symbolic link.',
         'name' => 'The storage directory is linked',

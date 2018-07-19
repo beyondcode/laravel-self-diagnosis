@@ -75,6 +75,14 @@ return [
                 ],
             ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            //\BeyondCode\SelfDiagnosis\Checks\ServersArePingable::class => [
+            //    'servers' => [
+            //        'www.google.com',
+            //        ['host' => 'www.google.com', 'port' => 8080],
+            //        '8.8.8.8',
+            //        ['host' => '8.8.8.8', 'port' => 8080, 'timeout' => 5],
+            //    ],
+            //],
             //\BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning::class => [
             //    'programs' => [
             //        'horizon',
