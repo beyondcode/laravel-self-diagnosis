@@ -42,9 +42,10 @@ class SelfDiagnosisCommand extends Command
                 $this->output->writeln('<fg=red>'.$message.'</fg=red>');
                 $this->output->writeln('');
             }
-        } else {
-            $this->info(trans('self-diagnosis::commands.self_diagnosis.success'));
+            return 1; // Any other return code then 0 means exit with error
         }
+        $this->info(trans('self-diagnosis::commands.self_diagnosis.success'));
+        return 0;
     }
 
     protected function runChecks(array $checks, string $title)

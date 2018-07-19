@@ -85,4 +85,13 @@ return [
         'message' => 'The storage directory is not linked. Use "php artisan storage:link" to create a symbolic link.',
         'name' => 'The storage directory is linked',
     ],
+    'supervisor_programs_are_running' => [
+        'message' => [
+            'cannot_run_on_windows' => 'This check cannot be run on Windows.',
+            'not_running_programs' => 'The following programs are not running or require a restart:' . PHP_EOL . ':programs',
+            'shell_exec_not_available' => 'The function "shell_exec" is not defined or disabled, so we cannot check the running programs.',
+            'supervisor_command_not_available' => 'The "supervisorctl" command is not available on the current OS.',
+        ],
+        'name' => 'All supervisor programs are running',
+    ],
 ];

@@ -74,6 +74,12 @@ return [
                 ],
             ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            //\BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning::class => [
+            //    'programs' => [
+            //        'horizon',
+            //    ],
+            //    'restarted_within' => 300,
+            //],
         ],
     ],
 
