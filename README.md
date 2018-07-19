@@ -146,6 +146,14 @@ return [
 				'connections' => [],
 			],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\ServersArePingable::class => [
+                'servers' => [
+                    'www.google.com',
+                    ['host' => 'www.google.com', 'port' => 8080],
+                    '8.8.8.8',
+                    ['host' => '8.8.8.8', 'port' => 8080, 'timeout' => 5],
+                ],
+            ],
             \BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning::class => [
                 'programs' => [
                     'horizon',
@@ -184,6 +192,8 @@ The following options are available for the individual checks:
 - [`BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning`](src/Checks/SupervisorProgramsAreRunning.php)
   - **programs** *(array, list of programs like `['horizon', 'another-program']`, default: `[]`)*: programs that are required to be running
   - **restarted_within** *(integer, max allowed seconds since last restart of programs (`0` = disabled), default: `0`)*: verifies that programs have been restarted recently to grab code updates
+- [`BeyondCode\SelfDiagnosis\Checks\ServersArePingable`](src/Checks/ServersArePingable.php)
+  - **servers** *(array, list of servers and parameters like `['google.com', ['host' => 'google.com', 'port' => 8080]]`)*: servers to ping
 
 ### Custom Checks
 
