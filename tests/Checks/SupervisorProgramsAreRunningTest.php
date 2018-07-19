@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use BeyondCode\SelfDiagnosis\SelfDiagnosisServiceProvider;
 use BeyondCode\SelfDiagnosis\SystemFunctions;

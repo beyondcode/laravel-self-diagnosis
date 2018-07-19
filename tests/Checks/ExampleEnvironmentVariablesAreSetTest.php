@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\SelfDiagnosisServiceProvider;
@@ -18,7 +18,7 @@ class ExampleEnvironmentVariablesAreSetTest extends TestCase
     /** @test */
     public function it_checks_if_example_env_variables_are_set_in_env_file()
     {
-        $this->app->setBasePath(__DIR__ . '/fixtures');
+        $this->app->setBasePath(__DIR__ . '/../fixtures');
 
         $check = new ExampleEnvironmentVariablesAreSet();
 

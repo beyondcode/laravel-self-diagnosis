@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Illuminate\Redis\Connections\Connection;
 use Illuminate\Support\Facades\Redis;

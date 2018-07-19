@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase;
