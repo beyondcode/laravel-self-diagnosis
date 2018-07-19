@@ -137,6 +137,12 @@ return [
                 ],
             ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning::class => [
+                'programs' => [
+                    'horizon',
+                ],
+                'restarted_within' => 300, // max seconds since last restart, 0 to disable check
+            ],
         ],
     ],
 
@@ -159,6 +165,9 @@ The following options are available for the individual checks:
 - [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled`](src/Checks/PhpExtensionsAreInstalled.php)
   - **extensions** *(array, list of extension names like `['openssl', 'PDO']`, default: `[]`)*: extensions to check
   - **include_composer_extensions** *(boolean, default: `false`)*: if required extensions defined in `composer.json` should be checked
+- [`BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning`](src/Checks/SupervisorProgramsAreRunning.php)
+  - **programs** *(array, list of programs like `['horizon', 'another-program']`, default: `[]`)*: programs that are required to be running
+  - **restarted_within** *(integer, max allowed seconds since last restart of programs (`0` = disabled), default: `0`)*: verifies that programs have been restarted recently to grab code updates
 
 ### Custom Checks
 

@@ -81,4 +81,13 @@ return [
         'message' => 'Das Speicherverzeichnis ist nicht verlinkt. Nutze "php artisan storage:link", um eine symbolische Verknüpfung zu erstellen.',
         'name' => 'Das Speicherverzeichnis ist verlinkt',
     ],
+    'supervisor_programs_are_running' => [
+        'message' => [
+            'cannot_run_on_windows' => 'Dieser Check kann unter Windows nicht ausgeführt werden..',
+            'not_running_programs' => 'Die folgenden Programme laufen nicht oder benötigen einen Neustart:' . PHP_EOL . ':programs',
+            'shell_exec_not_available' => 'Die Funktion "shell_exec" ist entweder nicht definiert oder deaktiviert, daher können die laufenden Programme nicht abgefragt werden.',
+            'supervisor_command_not_available' => 'Der Befehl "supervisorctl" ist auf dem aktuellen System nicht verfügbar.',
+        ],
+        'name' => 'Alle supervisor Programme sind in Betrieb',
+    ],
 ];
