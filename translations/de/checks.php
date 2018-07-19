@@ -69,6 +69,10 @@ return [
         'message' => 'Die folgenden Erweiterungen fehlen:' . PHP_EOL . ':extensions',
         'name' => 'Die benötigten PHP Erweiterungen sind installiert',
     ],
+    'redis_can_be_accessed' => [
+        'message' => 'Auf den Redis Cache kann nicht zugegriffen werden: :error',
+        'name' => 'Der Redis Cache ist erreichbar',
+    ],
     'routes_are_cached' => [
         'message' => 'Die Routen sollten für bessere Performance gecached sein im Produktivbetrieb. Nutze "php artisan route:cache", um den Routen-Cache zu erstellen.',
         'name' => 'Routen sind gecached',
