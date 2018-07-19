@@ -54,6 +54,10 @@ return [
         ],
         'name' => 'Benötigte Sprachumgebungen sind installiert',
     ],
+    'maintenance_mode_not_enabled' => [
+        'message' => 'Der Wartungsmodus ist noch aktiv. Deaktiviere ihn mit "php artisan up".',
+        'name' => 'Wartungsmodus ist nicht aktiv',
+    ],
     'migrations_are_up_to_date' => [
         'message' => [
             'need_to_migrate' => 'Die Datenbank muss aktualisiert werden. Nutze "php artisan migrate", um die Migrationen einzuspielen.',

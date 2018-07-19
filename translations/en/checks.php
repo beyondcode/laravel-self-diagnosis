@@ -54,6 +54,10 @@ return [
         ],
         'name' => 'Required locales are installed',
     ],
+    'maintenance_mode_not_enabled' => [
+        'message' => 'Maintenance mode is still enabled. Disable it with "php artisan up".',
+        'name' => 'Maintenance mode is not enabled',
+    ],
     'migrations_are_up_to_date' => [
         'message' => [
             'need_to_migrate' => 'You need to update your database. Call "php artisan migrate" to run migrations.',

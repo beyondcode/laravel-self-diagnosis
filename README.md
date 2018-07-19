@@ -102,6 +102,7 @@ return [
                 'en_US.utf8',
             ],
         ],
+        \BeyondCode\SelfDiagnosis\Checks\MaintenanceModeNotEnabled::class,
         \BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate::class,
         \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled::class => [
             'extensions' => [
