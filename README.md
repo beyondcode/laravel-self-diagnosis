@@ -20,9 +20,12 @@ Here is an example output of the command:
 - Can a connection to the database be established?
 - Do the `storage` and `bootstrap/cache` directories have the correct permissions?
 - Does the `.env` file exist?
+- Is the maintenance mode disabled?
+- Are the required locales installed on the system?
 - Are there environment variables that exist in `.env.example` but not in `.env`?
 - Are there any migrations that need to be run?
 - Is the storage directory linked?
+- Can Redis be accessed?
 
 ### Development environment checks
 
@@ -35,6 +38,8 @@ Here is an example output of the command:
 - Are the routes cached?
 - Is the xdebug PHP extension disabled?
 - Is APP_DEBUG set to false?
+- Are certain servers reachable?
+- Are certain supervisor programs running?
 
 ## Installation
 
