@@ -74,7 +74,11 @@ return [
         'name' => 'The required PHP extensions are installed',
     ],
     'redis_can_be_accessed' => [
-        'message' => 'The Redis cache can not be accessed: :error',
+        'message' => [
+            'not_accessible' => 'The Redis cache can not be accessed: :error',
+            'default_cache' => 'The default cache is not reachable.',
+            'named_cache' => 'The named cache :name is not reachable.',
+        ],
         'name' => 'The Redis cache can be accessed',
     ],
     'routes_are_cached' => [
