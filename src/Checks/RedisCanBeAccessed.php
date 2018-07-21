@@ -29,13 +29,17 @@ class RedisCanBeAccessed implements Check
     {
         try {
             if (array_get($config, 'default_connection', true)) {
-                if (!Redis::connection()->isConnected()) {
+                Redis::connection()->connect();
+
+                if (! Redis::connection()->isConnected()) {
                     return false;
                 }
             }
 
             foreach (array_get($config, 'connections', []) as $connection) {
-                if (!Redis::connection($connection)->isConnected()) {
+                Redis::connection($connection)->connect();
+
+                if (! Redis::connection($connection)->isConnected()) {
                     return false;
                 }
             }
