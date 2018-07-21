@@ -56,6 +56,14 @@ class PhpExtensionsAreInstalled implements Check
         $this->extensions = Collection::make(array_get($config, 'extensions', []));
         if (array_get($config, 'include_composer_extensions', false)) {
             $this->extensions = $this->extensions->merge($this->getExtensionsRequiredInComposerFile());
+            if (array_get($config, 'ignore_composer_config_platform_extensions', false)) {
+                $composer_json = json_decode($this->filesystem->get(base_path('composer.json')), true);
+                $ignoreExtentions = collect(array_keys(array_get($composer_json, "config.platform", [])))
+                    ->transform(function ($item) {
+                        return str_replace_first(self::EXT, '', $item);
+                    });
+                $this->extensions = $this->extensions->diff($ignoreExtentions);
+            }
             $this->extensions = $this->extensions->unique();
         }
         $this->extensions = $this->extensions->reject(function ($ext) {
