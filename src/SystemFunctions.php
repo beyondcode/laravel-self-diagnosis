@@ -29,7 +29,7 @@ class SystemFunctions
      */
     public function isFunctionAvailable(string $function): bool
     {
-        return is_callable($function) && true === stripos(ini_get('disable_functions'), $function);
+        return is_callable($function) && false === stripos(ini_get('disable_functions'), $function);
     }
 
     /**
