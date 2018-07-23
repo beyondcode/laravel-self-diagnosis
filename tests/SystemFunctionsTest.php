@@ -2,13 +2,16 @@
 
 namespace BeyondCode\SelfDiagnosis\Tests;
 
-use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\SystemFunctions;
+use PHPUnit\Framework\TestCase;
 
+/**
+ *
+ * @runTestsInSeparateProcesses
+ */
 class SystemFunctionsTest extends TestCase
 {
     /**
-     * @runInSeparateProcess
      * @test
      */
     public function it_find_windows_as_os()
@@ -20,7 +23,6 @@ class SystemFunctionsTest extends TestCase
     }
 
     /**
-     * @runInSeparateProcess
      * @test
      */
     public function it_find_nowindows_as_os()
