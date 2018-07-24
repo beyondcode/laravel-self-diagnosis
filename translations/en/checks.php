@@ -45,6 +45,10 @@ return [
         'message' => 'These environment variables are missing in your .env file, but are defined in your .env.example:' . PHP_EOL . ':variables',
         'name' => 'The example environment variables are set',
     ],
+    'example_environment_variables_are_up_to_date' => [
+        'message' => 'These environment variables are defined in your .env file, but are missing in your .env.example:' . PHP_EOL . ':variables',
+        'name' => 'The example environment variables are up-to-date',
+    ],
     'locales_are_installed' => [
         'message' => [
             'cannot_run_on_windows' => 'This check cannot be run on Windows.',
