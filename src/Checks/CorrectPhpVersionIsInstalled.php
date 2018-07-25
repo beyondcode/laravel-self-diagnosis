@@ -3,6 +3,7 @@
 namespace BeyondCode\SelfDiagnosis\Checks;
 
 use Illuminate\Filesystem\Filesystem;
+use Composer\Semver\Semver;
 
 class CorrectPhpVersionIsInstalled implements Check
 {
@@ -34,7 +35,12 @@ class CorrectPhpVersionIsInstalled implements Check
      */
     public function check(array $config): bool
     {
-        return version_compare(phpversion(), $this->getRequiredPhpVersion(), '>=');
+        // we dont use the phpversion function because that adds more data to the number (Like: -1+ubuntu16.04)
+        // that conflicts with the semver check
+        return Semver::satisfies(
+            PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION,
+            $this->getRequiredPhpConstraint()
+        );
     }
 
     /**
@@ -47,7 +53,7 @@ class CorrectPhpVersionIsInstalled implements Check
     public function message(array $config): string
     {
         return trans('self-diagnosis::checks.correct_php_version_is_installed.message', [
-            'required' => $this->getRequiredPhpVersion(),
+            'required' => $this->getRequiredPhpConstraint(),
             'used' => phpversion(),
         ]);
     }
@@ -62,5 +68,15 @@ class CorrectPhpVersionIsInstalled implements Check
         $versionString = array_get($composer, 'require.php');
 
         return str_replace(['^', '~', '<', '>', '='], '', $versionString);
+    }
+
+    /**
+     * @return mixed
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function getRequiredPhpConstraint()
+    {
+        $composer = json_decode($this->filesystem->get(base_path('composer.json')), true);
+        return array_get($composer, 'require.php');
     }
 }
