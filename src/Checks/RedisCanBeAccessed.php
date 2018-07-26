@@ -29,23 +29,26 @@ class RedisCanBeAccessed implements Check
     {
         try {
             if (array_get($config, 'default_connection', true)) {
-                if (!Redis::connection()->isConnected()) {
+                if (!$this->testConnection()) {
+                    $this->message = trans('self-diagnosis::checks.redis_can_be_accessed.message.default_cache');
                     return false;
                 }
             }
 
             foreach (array_get($config, 'connections', []) as $connection) {
-                if (!Redis::connection($connection)->isConnected()) {
+                if (!$this->testConnection($connection)) {
+                    $this->message = trans('self-diagnosis::checks.redis_can_be_accessed.message.named_cache', [
+                        'name' => $connection,
+                    ]);
                     return false;
                 }
             }
-
-            return true;
         } catch (\Exception $e) {
             $this->message = $e->getMessage();
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -56,8 +59,21 @@ class RedisCanBeAccessed implements Check
      */
     public function message(array $config): string
     {
-        return trans('self-diagnosis::checks.redis_can_be_accessed.message', [
+        return trans('self-diagnosis::checks.redis_can_be_accessed.message.not_accessible', [
             'error' => $this->message,
         ]);
+    }
+
+    /**
+     * Tests a redis connection and returns whether the connection is opened or not.
+     *
+     * @param string|null $name
+     * @return bool
+     */
+    private function testConnection(string $name = null): bool
+    {
+        $connection = Redis::connection($name);
+        $connection->connect();
+        return $connection->isConnected();
     }
 }

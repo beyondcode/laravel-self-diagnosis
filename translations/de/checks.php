@@ -74,7 +74,11 @@ return [
         'name' => 'Die benötigten PHP Erweiterungen sind installiert',
     ],
     'redis_can_be_accessed' => [
-        'message' => 'Auf den Redis Cache kann nicht zugegriffen werden: :error',
+        'message' => [
+            'not_accessible' => 'Auf den Redis Cache kann nicht zugegriffen werden: :error',
+            'default_cache' => 'Der Standard-Cache ist nicht erreichbar.',
+            'named_cache' => 'Der Cache :name ist nicht erreichbar.',
+        ],
         'name' => 'Der Redis Cache ist erreichbar',
     ],
     'routes_are_cached' => [
