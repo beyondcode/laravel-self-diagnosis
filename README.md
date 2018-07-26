@@ -31,6 +31,7 @@ Here is an example output of the command:
 
 - Is the configuration not cached?
 - Are the routes not cached?
+- Are there environment variables that exist in `.env` but not in `.env.example`?
 
 ### Production environment checks
 
@@ -49,7 +50,7 @@ You can install the package via composer:
 composer require beyondcode/laravel-self-diagnosis
 ```
 
-If you're using Laravel 5.5+ the `SelfDiagnosisServiceProvider` will be automatically registered for you. 
+If you're using Laravel 5.5+ the `SelfDiagnosisServiceProvider` will be automatically registered for you.
 
 ## Usage
 
@@ -247,7 +248,7 @@ class MyCustomCheck implements Check
 }
 ```
 
- 
+
 ### Example Output
 
 

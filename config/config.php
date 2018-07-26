@@ -64,6 +64,7 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class,
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
+            \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreUpToDate::class,
         ],
         'production' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
