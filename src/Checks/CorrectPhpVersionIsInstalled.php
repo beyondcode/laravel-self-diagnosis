@@ -62,18 +62,6 @@ class CorrectPhpVersionIsInstalled implements Check
      * @return mixed
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function getRequiredPhpVersion()
-    {
-        $composer = json_decode($this->filesystem->get(base_path('composer.json')), true);
-        $versionString = array_get($composer, 'require.php');
-
-        return str_replace(['^', '~', '<', '>', '='], '', $versionString);
-    }
-
-    /**
-     * @return mixed
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
     public function getRequiredPhpConstraint()
     {
         $composer = json_decode($this->filesystem->get(base_path('composer.json')), true);
