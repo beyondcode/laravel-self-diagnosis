@@ -130,15 +130,15 @@ return [
     'environment_checks' => [
         'development' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class => [
-				'additional_options' => '--ignore-platform-reqs',
-			],
+                'additional_options' => '--ignore-platform-reqs',
+            ],
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
         ],
         'production' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class => [
-				'additional_options' => '--ignore-platform-reqs',
-			],
+                'additional_options' => '--ignore-platform-reqs',
+            ],
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
             \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
             \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled::class => [
@@ -146,10 +146,10 @@ return [
                     'xdebug',
                 ],
             ],
-			\BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
-				'default_connection' => true,
-				'connections' => [],
-			],
+            \BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
+                'default_connection' => true,
+                'connections' => [],
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
             \BeyondCode\SelfDiagnosis\Checks\ServersArePingable::class => [
                 'servers' => [
