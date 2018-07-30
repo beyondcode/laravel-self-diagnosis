@@ -45,7 +45,7 @@ class PhpExtensionsAreDisabled implements Check
      */
     public function message(array $config): string
     {
-        return trans('self-dianosis::checks.php_extensions_are_disabled.message', [
+        return trans('self-diagnosis::checks.php_extensions_are_disabled.message', [
             'extensions' => $this->extensions->implode(PHP_EOL),
         ]);
     }
