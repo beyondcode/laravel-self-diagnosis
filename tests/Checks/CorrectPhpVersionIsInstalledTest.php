@@ -24,7 +24,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
 
         $fileSystemMock = \Mockery::mock(Filesystem::class);
 
-        $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
+        $data = file_get_contents(__DIR__ . '/../fixtures/composer.json');
 
         $data = str_replace('"php": "^7.1.3",', '"php": "^100",', $data);
 
@@ -41,7 +41,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
     {
         $fileSystemMock = \Mockery::mock(Filesystem::class);
 
-        $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
+        $data = file_get_contents(__DIR__ . '/../fixtures/composer.json');
 
         $data = str_replace('"php": "^7.1.3",', '"php": "<=1",', $data);
 
@@ -58,7 +58,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
     {
         $fileSystemMock = \Mockery::mock(Filesystem::class);
 
-        $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
+        $data = file_get_contents(__DIR__ . '/../fixtures/composer.json');
 
         $data = str_replace('"php": "^7.1.3",', '"php": "7.*",', $data);
 
@@ -68,5 +68,23 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
         $check = new CorrectPhpVersionIsInstalled($fileSystemMock);
 
         $this->assertTrue($check->check([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(CorrectPhpVersionIsInstalled::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(CorrectPhpVersionIsInstalled::class);
+        $this->assertInternalType('string', $check->message([]));
     }
 }
