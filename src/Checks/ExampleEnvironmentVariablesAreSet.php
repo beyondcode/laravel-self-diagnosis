@@ -11,6 +11,14 @@ class ExampleEnvironmentVariablesAreSet implements Check
     private $envVariables;
 
     /**
+     * Construct the check, pre set the private variable.
+     */
+    public function __construct()
+    {
+        $this->envVariables = new Collection();
+    }
+
+    /**
      * The name of the check.
      *
      * @param array $config

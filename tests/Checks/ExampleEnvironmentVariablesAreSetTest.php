@@ -25,4 +25,22 @@ class ExampleEnvironmentVariablesAreSetTest extends TestCase
         $this->assertFalse($check->check([]));
         $this->assertSame('These environment variables are missing in your .env file, but are defined in your .env.example:'.PHP_EOL.'KEY_TWO', $check->message([]));
     }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(ExampleEnvironmentVariablesAreSet::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(ExampleEnvironmentVariablesAreSet::class);
+        $this->assertInternalType('string', $check->message([]));
+    }
 }
