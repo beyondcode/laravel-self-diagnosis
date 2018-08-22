@@ -37,4 +37,22 @@ class DirectoriesHaveCorrectPermissionsTest extends TestCase
 
         $this->assertTrue($check->check($config));
     }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(DirectoriesHaveCorrectPermissions::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(DirectoriesHaveCorrectPermissions::class);
+        $this->assertInternalType('string', $check->message([]));
+    }
 }
