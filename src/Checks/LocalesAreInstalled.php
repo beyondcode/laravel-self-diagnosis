@@ -24,6 +24,7 @@ class LocalesAreInstalled implements Check
     public function __construct(SystemFunctions $systemFunctions)
     {
         $this->systemFunctions = $systemFunctions;
+        $this->missingLocales = new Collection();
     }
 
     /**

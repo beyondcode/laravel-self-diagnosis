@@ -146,4 +146,22 @@ class LocalesAreInstalledTest extends TestCase
         $this->assertFalse($result);
         $this->assertSame("The following locales are missing:\nen_US.utf8\nde_AT\nde_AT.utf8", $check->message($config));
     }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(LocalesAreInstalled::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(LocalesAreInstalled::class);
+        $this->assertInternalType('string', $check->message([]));
+    }
 }
