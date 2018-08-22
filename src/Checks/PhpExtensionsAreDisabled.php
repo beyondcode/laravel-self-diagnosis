@@ -10,6 +10,11 @@ class PhpExtensionsAreDisabled implements Check
     /** @var Collection */
     private $extensions;
 
+    public function __construct()
+    {
+        $this->extensions = new Collection();
+    }
+
     /**
      * The name of the check.
      *
