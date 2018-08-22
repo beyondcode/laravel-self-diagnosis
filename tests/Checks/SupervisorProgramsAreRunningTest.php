@@ -207,4 +207,13 @@ class SupervisorProgramsAreRunningTest extends TestCase
         $this->assertFalse($result);
         $this->assertSame("The following programs are not running or require a restart:\nprocess-1", $check->message($config));
     }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(SupervisorProgramsAreRunning::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
 }
