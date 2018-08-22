@@ -45,6 +45,10 @@ return [
         'message' => 'These environment variables are missing in your .env file, but are defined in your .env.example:' . PHP_EOL . ':variables',
         'name' => 'The example environment variables are set',
     ],
+    'example_environment_variables_are_up_to_date' => [
+        'message' => 'These environment variables are defined in your .env file, but are missing in your .env.example:' . PHP_EOL . ':variables',
+        'name' => 'The example environment variables are up-to-date',
+    ],
     'locales_are_installed' => [
         'message' => [
             'cannot_run_on_windows' => 'This check cannot be run on Windows.',
@@ -74,7 +78,11 @@ return [
         'name' => 'The required PHP extensions are installed',
     ],
     'redis_can_be_accessed' => [
-        'message' => 'The Redis cache can not be accessed: :error',
+        'message' => [
+            'not_accessible' => 'The Redis cache can not be accessed: :error',
+            'default_cache' => 'The default cache is not reachable.',
+            'named_cache' => 'The named cache :name is not reachable.',
+        ],
         'name' => 'The Redis cache can be accessed',
     ],
     'routes_are_cached' => [

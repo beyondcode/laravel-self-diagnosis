@@ -31,6 +31,7 @@ Here is an example output of the command:
 
 - Is the configuration not cached?
 - Are the routes not cached?
+- Are there environment variables that exist in `.env` but not in `.env.example`?
 
 ### Production environment checks
 
@@ -49,7 +50,7 @@ You can install the package via composer:
 composer require beyondcode/laravel-self-diagnosis
 ```
 
-If you're using Laravel 5.5+ the `SelfDiagnosisServiceProvider` will be automatically registered for you. 
+If you're using Laravel 5.5+ the `SelfDiagnosisServiceProvider` will be automatically registered for you.
 
 ## Usage
 
@@ -130,15 +131,15 @@ return [
     'environment_checks' => [
         'development' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class => [
-				'additional_options' => '--ignore-platform-reqs',
-			],
+                'additional_options' => '--ignore-platform-reqs',
+            ],
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
         ],
         'production' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class => [
-				'additional_options' => '--ignore-platform-reqs',
-			],
+                'additional_options' => '--ignore-platform-reqs',
+            ],
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsCached::class,
             \BeyondCode\SelfDiagnosis\Checks\DebugModeIsNotEnabled::class,
             \BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled::class => [
@@ -146,10 +147,10 @@ return [
                     'xdebug',
                 ],
             ],
-			\BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
-				'default_connection' => true,
-				'connections' => [],
-			],
+            \BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
+                'default_connection' => true,
+                'connections' => [],
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
             \BeyondCode\SelfDiagnosis\Checks\ServersArePingable::class => [
                 'servers' => [
@@ -247,7 +248,7 @@ class MyCustomCheck implements Check
 }
 ```
 
- 
+
 ### Example Output
 
 
