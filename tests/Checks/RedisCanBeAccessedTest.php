@@ -121,4 +121,13 @@ class RedisCanBeAccessedTest extends TestCase
         $this->assertFalse($check->check($config));
         $this->assertSame('The Redis cache can not be accessed: The named cache some_connection is not reachable.', $check->message($config));
     }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(RedisCanBeAccessed::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
 }
