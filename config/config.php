@@ -75,6 +75,12 @@ return [
                     'xdebug',
                 ],
             ],
+            \BeyondCode\SelfDiagnosis\Checks\LogFilesDontExist::class => [
+                'ignore_files' => [
+                    'ignore-me.log',
+                    //'laravel-*.log'
+                ]
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreCached::class,
             //\BeyondCode\SelfDiagnosis\Checks\ServersArePingable::class => [
             //    'servers' => [
