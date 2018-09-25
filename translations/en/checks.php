@@ -58,6 +58,10 @@ return [
         ],
         'name' => 'Required locales are installed',
     ],
+    'log_files_dont_exist' => [
+        'message' => 'The following log files are in your log folder:' . PHP_EOL . ':files',
+        'name' => 'The log folder contains log files'
+    ],
     'maintenance_mode_not_enabled' => [
         'message' => 'Maintenance mode is still enabled. Disable it with "php artisan up".',
         'name' => 'Maintenance mode is not enabled',

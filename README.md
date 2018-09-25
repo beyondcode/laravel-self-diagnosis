@@ -39,6 +39,7 @@ Here is an example output of the command:
 - Are the routes cached?
 - Is the xdebug PHP extension disabled?
 - Is APP_DEBUG set to false?
+- Does your log folder contain log files?
 - Are certain servers reachable?
 - Are certain supervisor programs running?
 
@@ -147,6 +148,12 @@ return [
                     'xdebug',
                 ],
             ],
+            \BeyondCode\SelfDiagnosis\Checks\LogFilesDontExist::class => [
+                'ignore_files' => [
+                    'ignore-me.log',
+                    //'laravel-*.log'
+                ]
+            ],
             \BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
                 'default_connection' => true,
                 'connections' => [],
@@ -192,6 +199,8 @@ The following options are available for the individual checks:
 - [`BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled`](src/Checks/PhpExtensionsAreInstalled.php)
   - **extensions** *(array, list of extension names like `['openssl', 'PDO']`, default: `[]`)*: extensions to check
   - **include_composer_extensions** *(boolean, default: `false`)*: if required extensions defined in `composer.json` should be checked
+- [`BeyondCode\SelfDiagnosis\Checks\LogFilesDontExist`](src/Checks/LogFilesDontExist.php)
+  - **ignore_files** *(array, list of filenames to ignore like `['ignore-me.log', 'laravel-*.log']`, default: `[]`)*: files to ignore
 - [`BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed`](src/Checks/RedisCanBeAccessed.php)
   - **default_connection** *(boolean, default: `true`)*: if the default connection should be checked
   - **connections** *(array, list of connection names like `['cache_1', 'cache_2']`, default: `[]`)*: additional connections to check

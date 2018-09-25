@@ -54,6 +54,10 @@ return [
         ],
         'name' => 'Benötigte Sprachumgebungen sind installiert',
     ],
+    'log_files_dont_exist' => [
+        'message' => 'Die folgenden Log-Dateien befinden sich im Log-Ordner:' . PHP_EOL . ':files',
+        'name' => 'Der Log-Ordner enthält Log-Dateien'
+    ],
     'maintenance_mode_not_enabled' => [
         'message' => 'Der Wartungsmodus ist noch aktiv. Deaktiviere ihn mit "php artisan up".',
         'name' => 'Wartungsmodus ist nicht aktiv',
