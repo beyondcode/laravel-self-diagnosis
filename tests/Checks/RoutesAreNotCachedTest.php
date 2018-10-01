@@ -13,7 +13,7 @@ use BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached;
 class RoutesAreNotCachedTest extends TestCase
 {
     /**
-     * be sure toe remove the cached config
+     * be sure to remove the cached config
      *
      * {@inheritDoc}
      * @see \Orchestra\Testbench\TestCase::tearDown()
