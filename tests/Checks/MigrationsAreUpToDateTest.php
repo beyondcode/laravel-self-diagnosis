@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate;
 
+/**
+ * @group checks
+ */
 class MigrationsAreUpToDateTest extends TestCase
 {
     /** @test */

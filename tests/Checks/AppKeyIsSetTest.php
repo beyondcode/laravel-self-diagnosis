@@ -5,6 +5,9 @@ namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet;
 
+/**
+ * @group checks
+ */
 class AppKeyIsSetTest extends TestCase
 {
     /** @test */

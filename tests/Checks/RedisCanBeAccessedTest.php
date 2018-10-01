@@ -9,6 +9,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @group checks
+ */
 class RedisCanBeAccessedTest extends TestCase
 {
     public function getPackageProviders($app)

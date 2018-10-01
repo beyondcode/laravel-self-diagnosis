@@ -8,6 +8,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\SupervisorProgramsAreRunning;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @group checks
+ */
 class SupervisorProgramsAreRunningTest extends TestCase
 {
     public function getPackageProviders($app)

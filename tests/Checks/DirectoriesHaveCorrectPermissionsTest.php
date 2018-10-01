@@ -6,6 +6,9 @@ use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions;
 
+/**
+ * @group checks
+ */
 class DirectoriesHaveCorrectPermissionsTest extends TestCase
 {
     /** @test */

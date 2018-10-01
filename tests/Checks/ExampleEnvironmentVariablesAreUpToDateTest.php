@@ -6,6 +6,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\SelfDiagnosisServiceProvider;
 use BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreUpToDate;
 
+/**
+ * @group checks
+ */
 class ExampleEnvironmentVariablesAreUpToDateTest extends TestCase
 {
     public function getPackageProviders($app)

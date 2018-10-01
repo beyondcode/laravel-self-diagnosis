@@ -6,6 +6,9 @@ use Orchestra\Testbench\TestCase;
 use Illuminate\Filesystem\Filesystem;
 use BeyondCode\SelfDiagnosis\Checks\EnvFileExists;
 
+/**
+ * @group checks
+ */
 class EnvFileExistsTest extends TestCase
 {
     /** @test */

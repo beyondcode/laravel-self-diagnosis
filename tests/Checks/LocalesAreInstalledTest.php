@@ -8,6 +8,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @group checks
+ */
 class LocalesAreInstalledTest extends TestCase
 {
     public function getPackageProviders($app)

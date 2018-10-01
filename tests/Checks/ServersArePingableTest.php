@@ -7,6 +7,9 @@ use BeyondCode\SelfDiagnosis\Exceptions\InvalidConfigurationException;
 use BeyondCode\SelfDiagnosis\SelfDiagnosisServiceProvider;
 use Orchestra\Testbench\TestCase;
 
+/**
+ * @group checks
+ */
 class ServersArePingableTest extends TestCase
 {
     public function getPackageProviders($app)

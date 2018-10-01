@@ -6,6 +6,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled;
 use Illuminate\Filesystem\Filesystem;
 
+/**
+ * @group checks
+ */
 class CorrectPhpVersionIsInstalledTest extends TestCase
 {
     /** @test */

@@ -5,6 +5,9 @@ namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreDisabled;
 
+/**
+ * @group checks
+ */
 class PhpExtensionsAreDisabledTest extends TestCase
 {
 

@@ -6,6 +6,9 @@ use BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase;
 
+/**
+ * @group checks
+ */
 class StorageDirectoryIsLinkedTest extends TestCase
 {
     /** @test */

@@ -7,6 +7,8 @@ use BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached;
 
 /**
  * @group checks
+ * @group cache
+ * @group config
  */
 class ConfigurationIsNotCachedTest extends TestCase
 {

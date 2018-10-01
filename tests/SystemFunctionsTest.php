@@ -5,9 +5,6 @@ namespace BeyondCode\SelfDiagnosis\Tests;
 use BeyondCode\SelfDiagnosis\SystemFunctions;
 use PHPUnit\Framework\TestCase;
 
-/**
- *
- */
 class SystemFunctionsTest extends TestCase
 {
     /**

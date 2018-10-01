@@ -7,6 +7,8 @@ use BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached;
 
 /**
  * @group checks
+ * @group cache
+ * @group routes
  */
 class RoutesAreNotCachedTest extends TestCase
 {

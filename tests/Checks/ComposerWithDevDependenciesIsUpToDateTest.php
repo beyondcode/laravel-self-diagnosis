@@ -6,6 +6,10 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Composer;
 use BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate;
 
+/**
+ * @group checks
+ * @group composer
+ */
 class ComposerWithDevDependenciesIsUpToDateTest extends TestCase
 {
     /**

@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed;
 
+/**
+ * @group checks
+ */
 class DatabaseCanBeAccessedTest extends TestCase
 {
     /** @test */
