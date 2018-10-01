@@ -33,4 +33,22 @@ class SystemFunctionsTest extends TestCase
         $systemFunctions = new SystemFunctions();
         $this->assertFalse($systemFunctions->isWindowsOperatingSystem());
     }
+
+    /**
+     * @test
+     */
+    public function it_find_an_available_function()
+    {
+        $systemFunctions = new SystemFunctions();
+        $this->assertFalse($systemFunctions->isFunctionAvailable('print'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_find_an_unavailable_function()
+    {
+        $systemFunctions = new SystemFunctions();
+        $this->assertFalse($systemFunctions->isFunctionAvailable('function_that_doesnt_exist'));
+    }
 }
