@@ -23,7 +23,7 @@ class ComposerWithDevDependenciesIsUpToDateTest extends TestCase
 
         $check = new ComposerWithDevDependenciesIsUpToDate($composer);
 
-        $this->assertTrue($check->check([]));
+        $this->assertTrue($check->check([]), 'Composer should be up to date but the check thinks different');
     }
 
     /**
@@ -37,7 +37,7 @@ class ComposerWithDevDependenciesIsUpToDateTest extends TestCase
 
         $check = new ComposerWithDevDependenciesIsUpToDate($composer);
 
-        $this->assertFalse($check->check([]));
+        $this->assertFalse($check->check([]), 'Composer shouldn\'t be up to date but the check thinks different');
     }
 
     /**
@@ -57,7 +57,7 @@ class ComposerWithDevDependenciesIsUpToDateTest extends TestCase
 
         $this->assertTrue($check->check([
             'additional_options' => $additional,
-        ]));
+        ]), 'Composer should be up to date but the check thinks different');
     }
 
     /**
