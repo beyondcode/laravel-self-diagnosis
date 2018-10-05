@@ -87,4 +87,45 @@ class ServersArePingableTest extends TestCase
         $check = new ServersArePingable();
         $this->assertTrue($check->check($config));
     }
+
+    /**
+     * @test
+     */
+    public function it_succeeds_when_the_server_ip_can_be_reached_and_we_only_use_the_hostname()
+    {
+        $config = ['servers' => ['www.google.com']];
+
+        $check = new ServersArePingable();
+        $this->assertTrue($check->check($config));
+    }
+
+    /**
+     * @test
+     */
+    public function it_succeeds_when_we_add_the_port()
+    {
+        // we check the http and https host
+        $config = ['servers' => [['host' => 'www.google.com', 'port' => 80], ['host' => 'www.google.com', 'port' => 443]]];
+
+        $check = new ServersArePingable();
+        $this->assertTrue($check->check($config));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = new ServersArePingable();
+        $this->assertInternalType('string', $check->message([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = new ServersArePingable();
+        $this->assertInternalType('string', $check->name([]));
+    }
 }
