@@ -16,6 +16,7 @@ class PhpExtensionsAreInstalled implements Check
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;
+        $this->extensions = new Collection();
     }
 
     /** @var Collection */
