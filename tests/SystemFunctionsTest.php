@@ -13,7 +13,7 @@ class SystemFunctionsTest extends TestCase
     public function it_find_an_available_function()
     {
         $systemFunctions = new SystemFunctions();
-        $this->assertFalse($systemFunctions->isFunctionAvailable('print'));
+        $this->assertTrue($systemFunctions->isFunctionAvailable('print_r'));
     }
 
     /**
