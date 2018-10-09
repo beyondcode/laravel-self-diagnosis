@@ -3,6 +3,7 @@
 namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Orchestra\Testbench\TestCase;
+use Illuminate\Filesystem\Filesystem;
 use BeyondCode\SelfDiagnosis\Checks\PhpExtensionsAreInstalled;
 
 /**
@@ -42,6 +43,45 @@ class PhpExtensionsAreInstalledTest extends TestCase
         $this->assertfalse($check->check([
             'extensions' => $extensions,
         ]), 'The check should fail if we require any extension that we didn\'t have but it succeed');
+    }
+
+    /**
+     * @test
+     */
+    public function it_will_validate_the_composer_extensions()
+    {
+        $fileSystemMock = \Mockery::mock(Filesystem::class);
+
+        $data = file_get_contents(__DIR__ . '/../fixtures/installed.json');
+
+        $fileSystemMock->shouldReceive('get')
+            ->andReturn($data);
+
+        $check = new PhpExtensionsAreInstalled($fileSystemMock);
+
+        $this->assertTrue($check->check([
+            'include_composer_extensions' => true,
+        ]), 'The check should pass if we only require extension that we have');
+    }
+
+    /**
+     * @test
+     */
+    public function it_will_find_not_found_extension_required_by_composer()
+    {
+        $fileSystemMock = \Mockery::mock(Filesystem::class);
+
+        $data = file_get_contents(__DIR__ . '/../fixtures/installed.json');
+        $data = \str_replace('ext-mbstring', 'ext-dontexist', $data);
+
+        $fileSystemMock->shouldReceive('get')
+            ->andReturn($data);
+
+        $check = new PhpExtensionsAreInstalled($fileSystemMock);
+
+        $this->assertFalse($check->check([
+            'include_composer_extensions' => true,
+        ]),  'The check should fail if we require any extension that we didn\'t have but it succeed');
     }
 
     /**
