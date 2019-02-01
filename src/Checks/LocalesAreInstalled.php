@@ -3,6 +3,7 @@
 namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\SystemFunctions;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class LocalesAreInstalled implements Check
@@ -45,7 +46,7 @@ class LocalesAreInstalled implements Check
      */
     public function check(array $config): bool
     {
-        $this->missingLocales = new Collection(array_get($config, 'required_locales', []));
+        $this->missingLocales = new Collection(Arr::get($config, 'required_locales', []));
         if ($this->missingLocales->isEmpty()) {
             return true;
         }

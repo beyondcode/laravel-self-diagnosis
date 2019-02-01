@@ -4,6 +4,7 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Exceptions\InvalidConfigurationException;
 use BeyondCode\SelfDiagnosis\Server;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use JJG\Ping;
 
@@ -34,7 +35,7 @@ class ServersArePingable implements Check
      */
     public function check(array $config): bool
     {
-        $this->notReachableServers = $this->parseConfiguredServers(array_get($config, 'servers', []));
+        $this->notReachableServers = $this->parseConfiguredServers(Arr::get($config, 'servers', []));
         if ($this->notReachableServers->isEmpty()) {
             return true;
         }
@@ -94,9 +95,9 @@ class ServersArePingable implements Check
                     throw new InvalidConfigurationException('For servers in array notation, the host parameter is required.');
                 }
 
-                $host = array_get($server, 'host');
-                $port = array_get($server, 'port');
-                $timeout = array_get($server, 'timeout', self::DEFAULT_TIMEOUT);
+                $host = Arr::get($server, 'host');
+                $port = Arr::get($server, 'port');
+                $timeout = Arr::get($server, 'timeout', self::DEFAULT_TIMEOUT);
 
                 $result->push(new Server($host, $port, $timeout));
             } else if (is_string($server)) {

@@ -3,6 +3,7 @@
 namespace BeyondCode\SelfDiagnosis\Checks;
 
 use DB;
+use Illuminate\Support\Arr;
 
 class DatabaseCanBeAccessed implements Check
 {
@@ -28,11 +29,11 @@ class DatabaseCanBeAccessed implements Check
     public function check(array $config): bool
     {
         try {
-            if (array_get($config, 'default_connection', true)) {
+            if (Arr::get($config, 'default_connection', true)) {
                 DB::connection()->getPdo();
             }
 
-            foreach (array_get($config, 'connections', []) as $connection) {
+            foreach (Arr::get($config, 'connections', []) as $connection) {
                 DB::connection($connection)->getPdo();
             }
 
