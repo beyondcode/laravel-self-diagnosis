@@ -20,12 +20,13 @@
         "composer/semver": "^1.4",
         "geerlingguy/ping": "^1.1",
         "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*",
-        "vlucas/phpdotenv": "~2.5"
+        "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
         "larapack/dd": "^1.0",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "~3.5",
+        "orchestra/testbench": "^3.8",
+        "orchestra/testbench-core": "3.8.x-dev",
         "phpunit/phpunit": "^7.0",
         "predis/predis": "^1.1",
         "scrutinizer/ocular": "^1.5"
@@ -43,7 +44,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true
