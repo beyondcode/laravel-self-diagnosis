@@ -4,6 +4,7 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 use Illuminate\Filesystem\Filesystem;
 use Composer\Semver\Semver;
+use Illuminate\Support\Arr;
 
 class CorrectPhpVersionIsInstalled implements Check
 {
@@ -65,6 +66,6 @@ class CorrectPhpVersionIsInstalled implements Check
     public function getRequiredPhpConstraint()
     {
         $composer = json_decode($this->filesystem->get(base_path('composer.json')), true);
-        return array_get($composer, 'require.php');
+        return Arr::get($composer, 'require.php');
     }
 }

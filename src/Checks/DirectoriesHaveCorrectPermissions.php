@@ -2,6 +2,7 @@
 
 namespace BeyondCode\SelfDiagnosis\Checks;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 
@@ -54,7 +55,7 @@ class DirectoriesHaveCorrectPermissions implements Check
      */
     public function check(array $config): bool
     {
-        $this->paths = Collection::make(array_get($config, 'directories', []));
+        $this->paths = Collection::make(Arr::get($config, 'directories', []));
 
         $this->paths = $this->paths->reject(function ($path) {
             return $this->filesystem->isWritable($path);
