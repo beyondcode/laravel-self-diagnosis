@@ -29,10 +29,15 @@ class ExampleEnvironmentVariablesAreSet implements Check
      */
     public function check(array $config): bool
     {
-        $examples = new Dotenv(base_path(), '.env.example');
-        $examples->safeLoad();
+        if (interface_exists(\Dotenv\Environment\FactoryInterface::class)) {
+            $examples = Dotenv::create(base_path(), '.env.example');
+            $actual = Dotenv::create(base_path(), '.env');
+        } else {
+            $examples = new Dotenv(base_path(), '.env.example');
+            $actual = new Dotenv(base_path(), '.env');
+        }
 
-        $actual = new Dotenv(base_path(), '.env');
+        $examples->safeLoad();
         $actual->safeLoad();
 
         $this->envVariables = Collection::make($examples->getEnvironmentVariableNames())
