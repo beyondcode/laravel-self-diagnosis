@@ -90,6 +90,7 @@ return [
             //    ],
             //    'restarted_within' => 300,
             //],
+            //\BeyondCode\SelfDiagnosis\Checks\HorizonIsRunning::class,
         ],
     ],
 
