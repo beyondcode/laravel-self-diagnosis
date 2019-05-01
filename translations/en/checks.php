@@ -5,6 +5,10 @@ return [
         'message' => 'The application key is not set. Call "php artisan key:generate" to create and set one.',
         'name' => 'App key is set',
     ],
+    'cache_prefix_is_set' => [
+        'message' => 'A missing cache prefix could cause problems in shared hosting environments due to shared cache key access. Set a custom "CACHE_PREFIX" in your .env file.',
+        'name' => 'Cache prefix is set'
+    ],
     'composer_with_dev_dependencies_is_up_to_date' => [
         'message' => 'Your composer dependencies are not up to date. Call "composer install" to update them. :more',
         'name' => 'Composer dependencies (including dev) are up to date',

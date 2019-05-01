@@ -26,6 +26,7 @@ Here is an example output of the command:
 - Are there any migrations that need to be run?
 - Is the storage directory linked?
 - Can Redis be accessed?
+- Is a CACHE_PREFIX set?
 
 ### Development environment checks
 
@@ -89,6 +90,7 @@ return [
      */
     'checks' => [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
+        \BeyondCode\SelfDiagnosis\Checks\CachePrefixIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class => [
             'default_connection' => true,
