@@ -110,4 +110,8 @@ return [
         ],
         'name' => 'All supervisor programs are running',
     ],
+    'env_variables_exist' => [
+        'message' => ':empty environmental variables don\'t exist.',
+        'name' => 'All environmental variables exist',
+    ],
 ];

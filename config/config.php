@@ -29,6 +29,7 @@ return [
         ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
+        \BeyondCode\SelfDiagnosis\Checks\EnvVariablesExists::class,
         \BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled::class => [
             'required_locales' => [
                 'en_US',
@@ -65,6 +66,7 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreUpToDate::class,
+            \BeyondCode\SelfDiagnosis\Checks\EnvVariablesExists::class,
         ],
         'production' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
