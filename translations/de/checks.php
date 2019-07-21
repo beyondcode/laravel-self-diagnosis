@@ -107,7 +107,7 @@ return [
         'name' => 'Alle supervisor Programme sind in Betrieb',
     ],
     'env_variables_exist' => [
-        'message' => ':empty Umgebungsvariablen existieren nicht.',
+        'message' => ':undefined Umgebungsvariablen existieren nicht.',
         'name' => 'Alle Umgebungsvariablen existieren.',
     ],
 ];

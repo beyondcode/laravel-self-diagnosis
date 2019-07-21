@@ -11,11 +11,18 @@ use RegexIterator;
 class EnvVariablesExists implements Check
 {
     /**
+     * Stores processed var names
+     *
+     * @var array
+     */
+    private $processed = [];
+
+    /**
      * The empty results of performed scan
      *
      * @var array
      */
-    public $empty = 0;
+    public $undefined = 0;
 
     /**
      * The name of the check.
@@ -37,7 +44,7 @@ class EnvVariablesExists implements Check
     public function message(array $config): string
     {
         return trans('self-diagnosis::checks.env_variables_exist.message', [
-            'empty' => $this->empty,
+            'undefined' => $this->undefined,
         ]);
     }
 
@@ -61,11 +68,11 @@ class EnvVariablesExists implements Check
         $this->paths = Collection::make(Arr::get($config, 'directories', []));
 
         foreach ($this->paths as $path) {
-            $files = $this->recursiveDirSearch($path,  '/.*?.php/');
+            $files = $this->recursiveDirSearch($path, '/.*?.php/');
 
             foreach ($files as $file) {
                 preg_match_all(
-                    '#env\((.*?)\)#',
+                    '# env\((.*?)\)#',
                     str_replace(["\n", "\r"], '', file_get_contents($file)),
                     $values
                 );
@@ -76,26 +83,38 @@ class EnvVariablesExists implements Check
                             explode(',', str_replace(["'", '"', ' '], '', $value))
                         );
 
+                        if (!$result) {
+                            continue;
+                        }
+
                         $this->storeResult($result);
                     }
                 }
             }
         }
 
-        return $this->empty === 0;
+        return $this->undefined === 0;
     }
 
     /**
      * Get result based on comma separated parsed env() parameters
      *
      * @param array $values
-     * @return object
+     * @return object|bool
      */
     private function getResult(array $values)
     {
+        $envVar = $values[0];
+
+        if (in_array($envVar, $this->processed)) {
+            return false;
+        }
+
+        $this->processed[] = $envVar;
+
         return (object)[
-            'envVar' => $values[0],
-            'hasValue' => (bool)env($values[0]),
+            'envVar' => $envVar,
+            'hasValue' => env($envVar) !== null,
             'hasDefault' => isset($values[1]),
         ];
     }
@@ -107,14 +126,14 @@ class EnvVariablesExists implements Check
      */
     private function storeResult($result)
     {
-        if (! $result->hasValue && ! $result->hasDefault) {
-            $this->empty++;
+        if (!$result->hasValue && !$result->hasDefault) {
+            $this->undefined++;
         }
     }
 
     private function recursiveDirSearch(string $folder, string $pattern): array
     {
-        if (! file_exists($folder)) {
+        if (!file_exists($folder)) {
             return [];
         }
 
@@ -127,7 +146,7 @@ class EnvVariablesExists implements Check
 
         $list = [];
 
-        foreach($files as $file) {
+        foreach ($files as $file) {
             $list = array_merge($list, $file);
         }
 
