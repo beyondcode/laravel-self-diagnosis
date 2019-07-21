@@ -29,7 +29,12 @@ return [
         ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
-        \BeyondCode\SelfDiagnosis\Checks\EnvVariablesExists::class,
+        \BeyondCode\SelfDiagnosis\Checks\EnvVariablesExists::class => [
+            'directories' => [
+                config_path(),
+                app_path(),
+            ],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled::class => [
             'required_locales' => [
                 'en_US',

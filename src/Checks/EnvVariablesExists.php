@@ -49,14 +49,6 @@ class EnvVariablesExists implements Check
     }
 
     /**
-     * Directories to start recursive search for env()'s from
-     * Defaults to config_path()
-     *
-     * @var string $dir
-     */
-    public $paths;
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config
@@ -65,9 +57,9 @@ class EnvVariablesExists implements Check
      */
     public function check(array $config): bool
     {
-        $this->paths = Collection::make(Arr::get($config, 'directories', []));
+        $paths = Collection::make(Arr::get($config, 'directories', []));
 
-        foreach ($this->paths as $path) {
+        foreach ($paths as $path) {
             $files = $this->recursiveDirSearch($path, '/.*?.php/');
 
             foreach ($files as $file) {
