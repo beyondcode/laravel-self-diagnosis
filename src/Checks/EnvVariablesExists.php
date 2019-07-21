@@ -66,7 +66,7 @@ class EnvVariablesExists implements Check
             foreach ($files as $file) {
                 preg_match_all(
                     '#env\((.*?)\)#',
-                    shell_exec("tr -d '\n' < $file"),
+                    str_replace(["\n", "\r"], '', file_get_contents($file)),
                     $values
                 );
 
