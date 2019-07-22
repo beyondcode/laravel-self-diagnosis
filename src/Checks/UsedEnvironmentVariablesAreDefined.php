@@ -8,7 +8,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;
 
-class EnvVariablesExists implements Check
+class UsedEnvironmentVariablesAreDefined implements Check
 {
     /**
      * Stores processed var names
@@ -18,11 +18,18 @@ class EnvVariablesExists implements Check
     private $processed = [];
 
     /**
-     * The empty results of performed scan
+     * Stores undefined var names
      *
      * @var array
      */
-    public $undefined = 0;
+    public $undefined = [];
+
+    /**
+     * The amount of undefined .env variables
+     *
+     * @var integer
+     */
+    public $amount = 0;
 
     /**
      * The name of the check.
@@ -32,7 +39,7 @@ class EnvVariablesExists implements Check
      */
     public function name(array $config): string
     {
-        return trans('self-diagnosis::checks.env_variables_exist.name');
+        return trans('self-diagnosis::checks.used_env_variables_are_defined.name');
     }
 
     /**
@@ -43,8 +50,9 @@ class EnvVariablesExists implements Check
      */
     public function message(array $config): string
     {
-        return trans('self-diagnosis::checks.env_variables_exist.message', [
-            'undefined' => $this->undefined,
+        return trans('self-diagnosis::checks.used_env_variables_are_defined.message', [
+            'amount' => $this->amount,
+            'undefined' => implode(PHP_EOL, $this->undefined),
         ]);
     }
 
@@ -85,7 +93,7 @@ class EnvVariablesExists implements Check
             }
         }
 
-        return $this->undefined === 0;
+        return $this->amount === 0;
     }
 
     /**
@@ -119,7 +127,8 @@ class EnvVariablesExists implements Check
     private function storeResult($result)
     {
         if (!$result->hasValue && !$result->hasDefault) {
-            $this->undefined++;
+            $this->undefined[] = $result->envVar;
+            $this->amount++;
         }
     }
 

@@ -29,7 +29,7 @@ return [
         ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
         \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
-        \BeyondCode\SelfDiagnosis\Checks\EnvVariablesExists::class => [
+        \BeyondCode\SelfDiagnosis\Checks\UsedEnvironmentVariablesAreDefined::class => [
             'directories' => [
                 config_path(),
                 app_path(),
@@ -71,7 +71,7 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreUpToDate::class,
-            \BeyondCode\SelfDiagnosis\Checks\EnvVariablesExists::class,
+            \BeyondCode\SelfDiagnosis\Checks\UsedEnvironmentVariablesAreDefined::class,
         ],
         'production' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
