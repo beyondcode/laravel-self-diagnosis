@@ -23,13 +23,17 @@ class UsedEnvironmentVariablesAreDefinedTest extends TestCase
         env('FILLED');
         env('NOT_FILLED');
         env('FILLED_WITH_FALSE');
+        getenv('GET_FILLED');
 
         env('DEPENDING_ON_DEFAULT', 'default');
         env('DEFAULT_IS_FALSE', false);
+        getenv('GET_DEPENDING_ON_DEFAULT', 'default');
 
         env('UNDEFINED');
+        getenv('GET_UNDEFINED');
         // Doubles should be ignored
         env('UNDEFINED');
+        getenv('GET_UNDEFINED');
 
         $config = [
             'directories' => [
@@ -40,8 +44,12 @@ class UsedEnvironmentVariablesAreDefinedTest extends TestCase
         $check = new UsedEnvironmentVariablesAreDefined();
 
         $this->assertFalse($check->check($config));
-        $this->assertTrue($check->amount === 1);
+        $this->assertTrue($check->amount === 2);
         $this->assertTrue(in_array('UNDEFINED', $check->undefined));
-        $this->assertSame("1 used environmental variables are undefined: \nUNDEFINED", $check->message($config));
+        $this->assertTrue(in_array('GET_UNDEFINED', $check->undefined));
+        $this->assertSame(
+            "2 used environmental variables are undefined: \nUNDEFINED\nGET_UNDEFINED",
+            $check->message($config)
+        );
     }
 }

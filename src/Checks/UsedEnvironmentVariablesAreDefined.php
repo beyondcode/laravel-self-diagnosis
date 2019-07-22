@@ -72,23 +72,25 @@ class UsedEnvironmentVariablesAreDefined implements Check
 
             foreach ($files as $file) {
                 preg_match_all(
-                    '# env\((.*?)\)#',
+                    '# env\((.*?)\)| getenv\((.*?)\)#',
                     str_replace(["\n", "\r"], '', file_get_contents($file)),
                     $values
                 );
 
-                if (is_array($values)) {
-                    foreach ($values[1] as $value) {
-                        $result = $this->getResult(
-                            explode(',', str_replace(["'", '"', ' '], '', $value))
-                        );
+                $values = array_filter(
+                    array_merge($values[1], $values[2])
+                );
 
-                        if (!$result) {
-                            continue;
-                        }
+                foreach ($values as $value) {
+                    $result = $this->getResult(
+                        explode(',', str_replace(["'", '"', ' '], '', $value))
+                    );
 
-                        $this->storeResult($result);
+                    if (!$result) {
+                        continue;
                     }
+
+                    $this->storeResult($result);
                 }
             }
         }

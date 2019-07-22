@@ -28,6 +28,7 @@
     </logging>
     <php>
         <env name="FILLED" value="filled" force="true" />
+        <env name="GET_FILLED" value="filled" force="true" />
         <env name="NOT_FILLED" value="" force="true" />
         <env name="FILLED_WITH_FALSE" value="false" force="true" />
     </php>
