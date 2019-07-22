@@ -99,7 +99,7 @@ class UsedEnvironmentVariablesAreDefined implements Check
     }
 
     /**
-     * Get result based on comma separated parsed env() parameters
+     * Get result based on comma separated env() or getenv() parameters
      *
      * @param array $values
      * @return object|bool
@@ -122,7 +122,7 @@ class UsedEnvironmentVariablesAreDefined implements Check
     }
 
     /**
-     * Store result and optional runtime output
+     * Store result based on getResult's return value
      *
      * @param $result
      */
@@ -134,6 +134,13 @@ class UsedEnvironmentVariablesAreDefined implements Check
         }
     }
 
+    /**
+     * Recursively search folder(s) for files matching pattern
+     *
+     * @param string $folder
+     * @param string $pattern
+     * @return array
+     */
     private function recursiveDirSearch(string $folder, string $pattern): array
     {
         if (!file_exists($folder)) {
