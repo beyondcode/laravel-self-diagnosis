@@ -108,7 +108,7 @@ class UsedEnvironmentVariablesAreDefined implements Check
     {
         $envVar = $values[0];
 
-        if (in_array($envVar, $this->processed)) {
+        if (in_array($envVar, $this->processed, true)) {
             return false;
         }
 
@@ -154,11 +154,13 @@ class UsedEnvironmentVariablesAreDefined implements Check
             $pattern, RegexIterator::GET_MATCH
         );
 
-        $list = [];
+        $list = [[]];
 
         foreach ($files as $file) {
-            $list = array_merge($list, $file);
+            $list[] = $file;
         }
+
+        $list = array_merge(...$list);
 
         return $list;
     }

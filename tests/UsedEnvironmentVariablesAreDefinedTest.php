@@ -44,9 +44,9 @@ class UsedEnvironmentVariablesAreDefinedTest extends TestCase
         $check = new UsedEnvironmentVariablesAreDefined();
 
         $this->assertFalse($check->check($config));
-        $this->assertTrue($check->amount === 2);
-        $this->assertTrue(in_array('UNDEFINED', $check->undefined));
-        $this->assertTrue(in_array('GET_UNDEFINED', $check->undefined));
+        $this->assertSame($check->amount, 2);
+        $this->assertContains('UNDEFINED', $check->undefined);
+        $this->assertContains('GET_UNDEFINED', $check->undefined);
         $this->assertSame(
             "2 used environmental variables are undefined: \nUNDEFINED\nGET_UNDEFINED",
             $check->message($config)
