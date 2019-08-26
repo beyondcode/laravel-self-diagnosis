@@ -49,6 +49,13 @@ return [
         'message' => 'These environment variables are defined in your .env file, but are missing in your .env.example:' . PHP_EOL . ':variables',
         'name' => 'The example environment variables are up-to-date',
     ],
+    'horizon_is_running' => [
+        'message' => [
+            'not_running' => 'Horizon is not running.',
+            'unable_to_check' => 'Unable to check for horizon: :reason',
+        ],
+        'name' => 'Horizon is running',
+    ],
     'locales_are_installed' => [
         'message' => [
             'cannot_run_on_windows' => 'This check cannot be run on Windows.',
