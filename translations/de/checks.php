@@ -106,4 +106,8 @@ return [
         ],
         'name' => 'Alle supervisor Programme sind in Betrieb',
     ],
+    'used_env_variables_are_defined' => [
+        'message' => ':amount verwendete Umgebungsvariablen sind undefiniert:'.PHP_EOL.':undefined',
+        'name' => 'Alle verwendete Umgebungsvariablen sind definiert.',
+    ],
 ];

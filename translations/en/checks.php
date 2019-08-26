@@ -110,4 +110,8 @@ return [
         ],
         'name' => 'All supervisor programs are running',
     ],
+    'used_env_variables_are_defined' => [
+        'message' => ':amount used environmental variables are undefined: ' . PHP_EOL . ':undefined',
+        'name' => 'All used environmental variables are defined',
+    ],
 ];
