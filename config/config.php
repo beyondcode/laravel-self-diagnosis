@@ -16,6 +16,7 @@ return [
      */
     'checks' => [
         \BeyondCode\SelfDiagnosis\Checks\AppKeyIsSet::class,
+        \BeyondCode\SelfDiagnosis\Checks\CachePrefixIsSet::class,
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class => [
             'default_connection' => true,

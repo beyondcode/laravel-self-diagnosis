@@ -5,6 +5,10 @@ return [
         'message' => 'Der Anwendungsschlüssel ist nicht gesetzt. Nutze "php artisan key:generate", um einen zu erstellen und zu setzen.',
         'name' => 'Anwendungsschlüssel ist gesetzt',
     ],
+    'cache_prefix_is_set' => [
+        'message' => 'Ein fehlendes Cache-Prefix könnte in Shared-Hosting-Umgebungen Probleme verursachen wegen parallelem Zugriff auf Cache-Schlüssel. Setze ein eigenes "CACHE_PREFIX" in der .env Datei.',
+        'name' => 'Cache prefix ist gesetzt'
+    ],
     'composer_with_dev_dependencies_is_up_to_date' => [
         'message' => 'Die Composer Abhängigkeiten sind nicht aktuell. Nutze "composer install", um diese zu aktualisieren. :more',
         'name' => 'Composer Abhängigkeiten (inkl. dev) sind aktuell',
