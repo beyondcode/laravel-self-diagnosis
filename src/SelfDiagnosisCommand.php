@@ -27,7 +27,7 @@ class SelfDiagnosisCommand extends Command
     {
         $this->runChecks(config('self-diagnosis.checks', []), trans('self-diagnosis::commands.self_diagnosis.common_checks'));
 
-        $environment = $this->argument('environment', app()->environment());
+        $environment = $this->argument('environment') ?: app()->environment();
         $environmentChecks = config('self-diagnosis.environment_checks.' . $environment, []);
 
         if (empty($environmentChecks) && array_key_exists($environment, config('self-diagnosis.environment_aliases'))) {
