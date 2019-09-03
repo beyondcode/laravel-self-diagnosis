@@ -4,6 +4,7 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Composer;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ComposerWithDevDependenciesIsUpToDate implements Check
 {
@@ -42,7 +43,7 @@ class ComposerWithDevDependenciesIsUpToDate implements Check
 
         $this->output = $this->composer->installDryRun($additionalOptions);
 
-        return str_contains($this->output, 'Nothing to install or update');
+        return Str::contains($this->output, 'Nothing to install or update');
     }
 
     /**
