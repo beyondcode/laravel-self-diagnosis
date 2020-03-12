@@ -29,6 +29,10 @@ class ExampleEnvironmentVariablesAreUpToDate implements Check
      */
     public function check(array $config): bool
     {
+        if (method_exists(Dotenv::class, 'createImmutable')) {
+            return $this->checkForDotEnvV4();
+        }
+
         if (interface_exists(\Dotenv\Environment\FactoryInterface::class)) {
             $examples = Dotenv::create(base_path(), '.env.example');
             $actual = Dotenv::create(base_path(), '.env');
@@ -42,6 +46,22 @@ class ExampleEnvironmentVariablesAreUpToDate implements Check
 
         $this->envVariables = Collection::make($actual->getEnvironmentVariableNames())
             ->diff($examples->getEnvironmentVariableNames());
+
+        return $this->envVariables->isEmpty();
+    }
+
+    /**
+     * Perform the verification of this check for DotEnv v4.
+     *
+     * @return bool
+     */
+    public function checkForDotEnvV4(): bool
+    {
+        $examples = Dotenv::createImmutable(base_path(), '.env.example');
+        $actual = Dotenv::createImmutable(base_path(), '.env');
+
+        $this->envVariables = Collection::make($actual->safeLoad())
+            ->diff($examples->safeLoad());
 
         return $this->envVariables->isEmpty();
     }
