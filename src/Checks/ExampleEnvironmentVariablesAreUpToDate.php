@@ -55,7 +55,7 @@ class ExampleEnvironmentVariablesAreUpToDate implements Check
      *
      * @return bool
      */
-    public function checkForDotEnvV4(): bool
+    private function checkForDotEnvV4(): bool
     {
         $examples = Dotenv::createImmutable(base_path(), '.env.example');
         $actual = Dotenv::createImmutable(base_path(), '.env');
