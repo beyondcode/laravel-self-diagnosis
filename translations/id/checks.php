@@ -45,15 +45,11 @@ return [
         'name' => 'File environment ada',
     ],
     'example_environment_variables_are_set' => [
-        'message' => 'These environment variables are missing in your .env file, but are defined in your .env.example:' . PHP_EOL . ':variables',
-        'message' => 'Variabel environment ini tidak ada dalam file .env Anda, tetapi didefinisikan dalam
-        .env.example:'. PHP_EOL. ': variables',
+        'message' => 'Variabel environment ini tidak ada dalam file .env Anda, tetapi didefinisikan dalam .env.example:'. PHP_EOL. ': variables',
         'name' => 'Contoh environment sudah ditetapkan',
     ],
     'example_environment_variables_are_up_to_date' => [
-        'message' => 'These environment variables are defined in your .env file, but are missing in your .env.example:' . PHP_EOL . ':variables',
-        'message' => 'Variabel environment ini didefinisikan dalam file .env, tetapi tidak ada dalam .env.example
-        Anda: '. PHP_EOL. ': variables',
+        'message' => 'Variabel environment ini didefinisikan dalam file .env, tetapi tidak ada dalam .env.example Anda: '. PHP_EOL. ': variables',
         'name' => 'Contoh environment sudah terbaru',
     ],
     'horizon_is_running' => [
