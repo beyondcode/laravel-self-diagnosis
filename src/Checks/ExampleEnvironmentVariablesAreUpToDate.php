@@ -61,7 +61,8 @@ class ExampleEnvironmentVariablesAreUpToDate implements Check
         $actual = Dotenv::createImmutable(base_path(), '.env');
 
         $this->envVariables = Collection::make($actual->safeLoad())
-            ->diff($examples->safeLoad());
+            ->diffKeys($examples->safeLoad())
+            ->keys();
 
         return $this->envVariables->isEmpty();
     }
