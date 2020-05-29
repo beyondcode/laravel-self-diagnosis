@@ -12,7 +12,7 @@ class SelfDiagnosisCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'self-diagnosis';
+    protected $signature = 'self-diagnosis {environment?}';
 
     /**
      * The console command description.
@@ -27,13 +27,15 @@ class SelfDiagnosisCommand extends Command
     {
         $this->runChecks(config('self-diagnosis.checks', []), trans('self-diagnosis::commands.self_diagnosis.common_checks'));
 
-        $environmentChecks = config('self-diagnosis.environment_checks.' . app()->environment(), []);
-        if (empty($environmentChecks) && array_key_exists(app()->environment(), config('self-diagnosis.environment_aliases'))) {
-            $environment = config('self-diagnosis.environment_aliases.' . app()->environment());
+        $environment = $this->argument('environment') ?: app()->environment();
+        $environmentChecks = config('self-diagnosis.environment_checks.' . $environment, []);
+
+        if (empty($environmentChecks) && array_key_exists($environment, config('self-diagnosis.environment_aliases'))) {
+            $environment = config('self-diagnosis.environment_aliases.' . $environment);
             $environmentChecks = config('self-diagnosis.environment_checks.' . $environment, []);
         }
 
-        $this->runChecks($environmentChecks, trans('self-diagnosis::commands.self_diagnosis.environment_specific_checks', ['environment' => app()->environment()]));
+        $this->runChecks($environmentChecks, trans('self-diagnosis::commands.self_diagnosis.environment_specific_checks', ['environment' => $environment]));
 
         if (count($this->messages)) {
             $this->error(trans('self-diagnosis::commands.self_diagnosis.failed_checks'));

@@ -3,6 +3,8 @@
 namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\Composer;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ComposerWithoutDevDependenciesIsUpToDate implements Check
 {
@@ -37,11 +39,11 @@ class ComposerWithoutDevDependenciesIsUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        $additionalOptions = array_get($config, 'additional_options', '');
+        $additionalOptions = Arr::get($config, 'additional_options', '');
 
         $this->output = $this->composer->installDryRun('--no-dev ' . $additionalOptions);
 
-        return str_contains($this->output, 'Nothing to install or update');
+        return Str::contains($this->output, 'Nothing to install or update');
     }
 
     /**

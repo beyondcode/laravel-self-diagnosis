@@ -3,7 +3,9 @@
 namespace BeyondCode\SelfDiagnosis\Checks;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class PhpExtensionsAreInstalled implements Check
 {
@@ -53,8 +55,8 @@ class PhpExtensionsAreInstalled implements Check
      */
     public function check(array $config): bool
     {
-        $this->extensions = Collection::make(array_get($config, 'extensions', []));
-        if (array_get($config, 'include_composer_extensions', false)) {
+        $this->extensions = Collection::make(Arr::get($config, 'extensions', []));
+        if (Arr::get($config, 'include_composer_extensions', false)) {
             $this->extensions = $this->extensions->merge($this->getExtensionsRequiredInComposerFile());
             $this->extensions = $this->extensions->unique();
         }
@@ -75,11 +77,11 @@ class PhpExtensionsAreInstalled implements Check
 
         $extensions = [];
         foreach ($installedPackages as $installedPackage) {
-            $filtered = array_where(array_keys(array_get($installedPackage, 'require', [])), function ($value, $key) {
-                return starts_with($value, self::EXT);
+            $filtered = Arr::where(array_keys(Arr::get($installedPackage, 'require', [])), function ($value, $key) {
+                return Str::startsWith($value, self::EXT);
             });
             foreach ($filtered as $extension) {
-                $extensions[] = str_replace_first(self::EXT, '', $extension);
+                $extensions[] = Str::replaceFirst(self::EXT, '', $extension);
             }
         }
         return array_unique($extensions);

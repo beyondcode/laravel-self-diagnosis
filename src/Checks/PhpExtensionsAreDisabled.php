@@ -2,6 +2,7 @@
 
 namespace BeyondCode\SelfDiagnosis\Checks;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class PhpExtensionsAreDisabled implements Check
@@ -29,7 +30,7 @@ class PhpExtensionsAreDisabled implements Check
      */
     public function check(array $config): bool
     {
-        $this->extensions = Collection::make(array_get($config, 'extensions', []));
+        $this->extensions = Collection::make(Arr::get($config, 'extensions', []));
         $this->extensions = $this->extensions->reject(function ($ext) {
             return extension_loaded($ext) === false;
         });

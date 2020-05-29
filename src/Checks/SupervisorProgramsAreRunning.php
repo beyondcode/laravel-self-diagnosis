@@ -3,6 +3,7 @@
 namespace BeyondCode\SelfDiagnosis\Checks;
 
 use BeyondCode\SelfDiagnosis\SystemFunctions;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class SupervisorProgramsAreRunning implements Check
@@ -48,7 +49,7 @@ class SupervisorProgramsAreRunning implements Check
      */
     public function check(array $config): bool
     {
-        $this->notRunningPrograms = new Collection(array_get($config, 'programs', []));
+        $this->notRunningPrograms = new Collection(Arr::get($config, 'programs', []));
         if ($this->notRunningPrograms->isEmpty()) {
             return true;
         }
@@ -69,7 +70,7 @@ class SupervisorProgramsAreRunning implements Check
             return false;
         }
 
-        $restartedWithin = array_get($config, 'restarted_within', 0);
+        $restartedWithin = Arr::get($config, 'restarted_within', 0);
         $programs = explode("\n" , $programs);
         foreach ($programs as $program) {
             /*
