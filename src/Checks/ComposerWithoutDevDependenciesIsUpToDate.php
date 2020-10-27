@@ -43,7 +43,7 @@ class ComposerWithoutDevDependenciesIsUpToDate implements Check
 
         $this->output = $this->composer->installDryRun('--no-dev ' . $additionalOptions);
 
-        return Str::contains($this->output, 'Nothing to install or update');
+        return Str::contains($this->output, ['Nothing to install or update', 'Nothing to install, update or remove']);
     }
 
     /**
