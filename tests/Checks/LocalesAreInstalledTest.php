@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use BeyondCode\SelfDiagnosis\SelfDiagnosisServiceProvider;
 use BeyondCode\SelfDiagnosis\SystemFunctions;
@@ -8,6 +8,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @group checks
+ */
 class LocalesAreInstalledTest extends TestCase
 {
     public function getPackageProviders($app)
@@ -145,5 +148,23 @@ class LocalesAreInstalledTest extends TestCase
 
         $this->assertFalse($result);
         $this->assertSame("The following locales are missing:\nen_US.utf8\nde_AT\nde_AT.utf8", $check->message($config));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(LocalesAreInstalled::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(LocalesAreInstalled::class);
+        $this->assertInternalType('string', $check->message([]));
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Filesystem\Filesystem;
 use BeyondCode\SelfDiagnosis\Checks\EnvFileExists;
 
+/**
+ * @group checks
+ */
 class EnvFileExistsTest extends TestCase
 {
     /** @test */
@@ -31,5 +34,23 @@ class EnvFileExistsTest extends TestCase
         $check = new EnvFileExists($filesystem);
 
         $this->assertTrue($check->check([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(EnvFileExists::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(EnvFileExists::class);
+        $this->assertInternalType('string', $check->message([]));
     }
 }

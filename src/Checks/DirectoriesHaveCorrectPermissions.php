@@ -21,6 +21,7 @@ class DirectoriesHaveCorrectPermissions implements Check
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;
+        $this->paths = new Collection();
     }
 
     /**

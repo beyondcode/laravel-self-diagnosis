@@ -15,6 +15,11 @@ class ServersArePingable implements Check
     /** @var Collection */
     protected $notReachableServers;
 
+    public function __construct()
+    {
+        $this->notReachableServers = new Collection();
+    }
+
     /**
      * The name of the check.
      *

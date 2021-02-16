@@ -1,6 +1,6 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use BeyondCode\SelfDiagnosis\SelfDiagnosisServiceProvider;
 use Illuminate\Redis\Connections\Connection;
@@ -9,6 +9,9 @@ use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @group checks
+ */
 class RedisCanBeAccessedTest extends TestCase
 {
     public function getPackageProviders($app)
@@ -120,5 +123,14 @@ class RedisCanBeAccessedTest extends TestCase
             ->andReturn($connectionMock);
         $this->assertFalse($check->check($config));
         $this->assertSame('The Redis cache can not be accessed: The named cache some_connection is not reachable.', $check->message($config));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(RedisCanBeAccessed::class);
+        $this->assertInternalType('string', $check->name([]));
     }
 }

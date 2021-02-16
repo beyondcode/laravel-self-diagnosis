@@ -1,17 +1,20 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled;
 use Illuminate\Filesystem\Filesystem;
 
+/**
+ * @group checks
+ */
 class CorrectPhpVersionIsInstalledTest extends TestCase
 {
     /** @test */
     public function it_detects_the_php_constraint_from_composer_json()
     {
-        $this->app->setBasePath(__DIR__ . '/fixtures');
+        $this->app->setBasePath(__DIR__ . '/../fixtures');
 
         $check = app(CorrectPhpVersionIsInstalled::class);
 
@@ -24,7 +27,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
 
         $fileSystemMock = \Mockery::mock(Filesystem::class);
 
-        $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
+        $data = file_get_contents(__DIR__ . '/../fixtures/composer.json');
 
         $data = str_replace('"php": "^7.1.3",', '"php": "^100",', $data);
 
@@ -41,7 +44,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
     {
         $fileSystemMock = \Mockery::mock(Filesystem::class);
 
-        $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
+        $data = file_get_contents(__DIR__ . '/../fixtures/composer.json');
 
         $data = str_replace('"php": "^7.1.3",', '"php": "<=1",', $data);
 
@@ -58,7 +61,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
     {
         $fileSystemMock = \Mockery::mock(Filesystem::class);
 
-        $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
+        $data = file_get_contents(__DIR__ . '/../fixtures/composer.json');
 
         $data = str_replace('"php": "^7.1.3",', '"php": "7.*",', $data);
 
@@ -68,5 +71,23 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
         $check = new CorrectPhpVersionIsInstalled($fileSystemMock);
 
         $this->assertTrue($check->check([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(CorrectPhpVersionIsInstalled::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(CorrectPhpVersionIsInstalled::class);
+        $this->assertInternalType('string', $check->message([]));
     }
 }

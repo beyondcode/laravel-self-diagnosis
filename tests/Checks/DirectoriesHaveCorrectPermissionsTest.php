@@ -1,11 +1,14 @@
 <?php
 
-namespace BeyondCode\SelfDiagnosis\Tests;
+namespace BeyondCode\SelfDiagnosis\Tests\Checks;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions;
 
+/**
+ * @group checks
+ */
 class DirectoriesHaveCorrectPermissionsTest extends TestCase
 {
     /** @test */
@@ -36,5 +39,23 @@ class DirectoriesHaveCorrectPermissionsTest extends TestCase
         $check = new DirectoriesHaveCorrectPermissions($filesystem);
 
         $this->assertTrue($check->check($config));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_name_for_the_check()
+    {
+        $check = app(DirectoriesHaveCorrectPermissions::class);
+        $this->assertInternalType('string', $check->name([]));
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_a_message_for_the_check()
+    {
+        $check = app(DirectoriesHaveCorrectPermissions::class);
+        $this->assertInternalType('string', $check->message([]));
     }
 }
