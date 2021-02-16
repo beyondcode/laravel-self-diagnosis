@@ -48,6 +48,7 @@ return [
                 'json',
             ],
             'include_composer_extensions' => true,
+            'ignore_composer_config_platform_extensions' => false,
         ],
         //\BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
         //    'default_connection' => true,
