@@ -27,3 +27,5 @@ jobs:
               run: composer install --no-interaction --no-scripts --no-suggest --prefer-source
             - name: Execute tests
               run: vendor/bin/phpunit
+              env:
+                IS_GITHUB_ACTION: true

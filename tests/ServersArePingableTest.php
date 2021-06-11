@@ -79,7 +79,11 @@ class ServersArePingableTest extends TestCase
     /** @test */
     public function it_succeeds_when_the_server_ip_can_be_reached()
     {
-        $config = ['servers' => [['host' => 'www.github.com', 'timeout' => 10]]];
+        if (env('IS_GITHUB_ACTION', false) === true) {
+            $this->markTestSkipped('Skipped on github!');
+        }
+
+        $config = ['servers' => [['host' => 'www.google.com', 'timeout' => 2]]];
 
         $check = new ServersArePingable();
         $this->assertTrue($check->check($config));
