@@ -60,7 +60,7 @@ class CorrectPhpVersionIsInstalledTest extends TestCase
 
         $data = file_get_contents(__DIR__ . '/fixtures/composer.json');
 
-        $data = str_replace('"php": "^7.1.3",', '"php": "7.*",', $data);
+        $data = str_replace('"php": "^7.1.3",', '"php": "7.*|8.*",', $data);
 
         $fileSystemMock->shouldReceive('get')
             ->andReturn($data);
