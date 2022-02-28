@@ -1,6 +1,7 @@
 {
     "name": "beyondcode/laravel-self-diagnosis",
     "description": "Perform various self diagnosis tests on your Laravel application.",
+    "version": "10.0"
     "keywords": [
         "beyondcode",
         "laravel-self-diagnosis"
