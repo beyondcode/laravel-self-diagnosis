@@ -3,7 +3,6 @@
 namespace BeyondCode\SelfDiagnosis\Tests;
 
 use Illuminate\Support\Facades\Artisan;
-use Orchestra\Testbench\TestCase;
 use BeyondCode\SelfDiagnosis\Checks\MigrationsAreUpToDate;
 
 class MigrationsAreUpToDateTest extends TestCase
