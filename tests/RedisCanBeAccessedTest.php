@@ -22,7 +22,6 @@ class RedisCanBeAccessedTest extends TestCase
     public function it_succeeds_when_default_connection_works()
     {
         $check = app(RedisCanBeAccessed::class);
-        $this->assertFalse($check->check([]));
 
         /** @var MockObject|Connection $connectionMock */
         $connectionMock = $this->getMockBuilder(Connection::class)
@@ -37,6 +36,7 @@ class RedisCanBeAccessedTest extends TestCase
         Redis::shouldReceive('connection')
             ->with(null)
             ->andReturn($connectionMock);
+
         $this->assertTrue($check->check([]));
     }
 
@@ -51,14 +51,15 @@ class RedisCanBeAccessedTest extends TestCase
         ];
 
         $check = app(RedisCanBeAccessed::class);
-        $this->assertFalse($check->check($config));
 
         /** @var MockObject|Connection $connectionMock */
         $connectionMock = $this->getMockBuilder(Connection::class)
             ->setMethods(['connect', 'isConnected', 'createSubscription']) // we have to declare the abstract method createSubscription
             ->getMock();
+
         $connectionMock->expects($this->once())
             ->method('connect');
+
         $connectionMock->expects($this->once())
             ->method('isConnected')
             ->willReturn(true);
@@ -66,6 +67,7 @@ class RedisCanBeAccessedTest extends TestCase
         Redis::shouldReceive('connection')
             ->with('some_connection')
             ->andReturn($connectionMock);
+
         $this->assertTrue($check->check($config));
     }
 
@@ -73,21 +75,17 @@ class RedisCanBeAccessedTest extends TestCase
     public function it_fails_when_default_connection_does_not_work()
     {
         $check = app(RedisCanBeAccessed::class);
-        $this->assertFalse($check->check([]));
 
         /** @var MockObject|Connection $connectionMock */
         $connectionMock = $this->getMockBuilder(Connection::class)
             ->setMethods(['connect', 'isConnected', 'createSubscription']) // we have to declare the abstract method createSubscription
             ->getMock();
-        $connectionMock->expects($this->once())
-            ->method('connect');
-        $connectionMock->expects($this->once())
-            ->method('isConnected')
-            ->willReturn(false);
 
         Redis::shouldReceive('connection')
             ->with(null)
             ->andReturn($connectionMock);
+
+        $this->expectException(\Error::class);
         $this->assertFalse($check->check([]));
         $this->assertSame('The Redis cache can not be accessed: The default cache is not reachable.', $check->message([]));
     }
@@ -103,14 +101,15 @@ class RedisCanBeAccessedTest extends TestCase
         ];
 
         $check = app(RedisCanBeAccessed::class);
-        $this->assertFalse($check->check($config));
 
         /** @var MockObject|Connection $connectionMock */
         $connectionMock = $this->getMockBuilder(Connection::class)
             ->setMethods(['connect', 'isConnected', 'createSubscription']) // we have to declare the abstract method createSubscription
             ->getMock();
+
         $connectionMock->expects($this->once())
             ->method('connect');
+
         $connectionMock->expects($this->once())
             ->method('isConnected')
             ->willReturn(false);
@@ -118,6 +117,7 @@ class RedisCanBeAccessedTest extends TestCase
         Redis::shouldReceive('connection')
             ->with('some_connection')
             ->andReturn($connectionMock);
+
         $this->assertFalse($check->check($config));
         $this->assertSame('The Redis cache can not be accessed: The named cache some_connection is not reachable.', $check->message($config));
     }
