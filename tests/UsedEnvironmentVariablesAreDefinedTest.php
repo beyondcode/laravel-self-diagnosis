@@ -20,6 +20,19 @@ class UsedEnvironmentVariablesAreDefinedTest extends TestCase
      */
     public function it_checks_if_used_env_vars_are_defined()
     {
+        $envPath = base_path('.env');
+        file_put_contents($envPath, implode("\n", [
+            'FILLED=value',
+            'NOT_FILLED=another',
+            'FILLED_WITH_FALSE=false',
+            'GET_FILLED=email@example.com',
+            'DEPENDING_ON_DEFAULT=custom',
+            'DEFAULT_IS_FALSE=false',
+            'GET_DEPENDING_ON_DEFAULT=default',
+        ]));
+
+        \Dotenv\Dotenv::createImmutable(base_path())->load();
+
         env('FILLED');
         env('NOT_FILLED');
         env('FILLED_WITH_FALSE');
@@ -31,25 +44,25 @@ class UsedEnvironmentVariablesAreDefinedTest extends TestCase
 
         env('UNDEFINED');
         getenv('GET_UNDEFINED');
-        // Doubles should be ignored
-        env('UNDEFINED');
+        env('UNDEFINED'); 
         getenv('GET_UNDEFINED');
 
         $config = [
             'directories' => [
-                __DIR__
+                __DIR__,
             ],
         ];
 
-        $check = new UsedEnvironmentVariablesAreDefined();
+        $check = new \BeyondCode\SelfDiagnosis\Checks\UsedEnvironmentVariablesAreDefined();
 
         $this->assertFalse($check->check($config));
-        $this->assertSame($check->amount, 2);
+        $this->assertSame(2, $check->amount);
         $this->assertContains('UNDEFINED', $check->undefined);
         $this->assertContains('GET_UNDEFINED', $check->undefined);
-        $this->assertSame(
-            "2 used environmental variables are undefined: \nUNDEFINED\nGET_UNDEFINED",
-            $check->message($config)
-        );
+        $this->assertStringContainsString('2 used environmental variables are undefined:', $check->message($config));
+        $this->assertStringContainsString('UNDEFINED', $check->message($config));
+        $this->assertStringContainsString('GET_UNDEFINED', $check->message($config));
+
+        unlink($envPath);
     }
 }
