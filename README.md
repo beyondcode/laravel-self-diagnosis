@@ -1,8 +1,6 @@
 # Perform Self-Diagnosis Tests On Your Laravel Application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/beyondcode/laravel-self-diagnosis.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-self-diagnosis)
-[![Build Status](https://img.shields.io/travis/beyondcode/laravel-self-diagnosis/master.svg?style=flat-square)](https://travis-ci.org/beyondcode/laravel-self-diagnosis)
-[![Quality Score](https://img.shields.io/scrutinizer/g/beyondcode/laravel-self-diagnosis.svg?style=flat-square)](https://scrutinizer-ci.com/g/beyondcode/laravel-self-diagnosis)
 [![Total Downloads](https://img.shields.io/packagist/dt/beyondcode/laravel-self-diagnosis.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-self-diagnosis)
 
 This package allows you to run self-diagnosis tests on your Laravel application. It comes with multiple checks out of the box and allows you to add custom checks yourself.
@@ -13,8 +11,8 @@ Here is an example output of the command:
 
 ## Included checks
 
-- Is the APP_KEY set?
-- Are your composer dependencies up to date with the composer.lock file?
+- Is the `APP_KEY` set?
+- Are your composer dependencies up to date with the `composer.lock` file?
 - Do you have the correct PHP version installed?
 - Do you have the correct PHP extensions installed?
 - Can a connection to the database be established?
@@ -49,8 +47,6 @@ You can install the package via composer:
 ```bash
 composer require beyondcode/laravel-self-diagnosis
 ```
-
-If you're using Laravel 5.5+ the `SelfDiagnosisServiceProvider` will be automatically registered for you.
 
 ## Usage
 

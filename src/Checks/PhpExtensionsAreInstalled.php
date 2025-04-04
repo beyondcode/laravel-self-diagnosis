@@ -5,6 +5,7 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class PhpExtensionsAreInstalled implements Check
 {
@@ -77,10 +78,10 @@ class PhpExtensionsAreInstalled implements Check
         $extensions = [];
         foreach ($installedPackages as $installedPackage) {
             $filtered = Arr::where(array_keys(Arr::get($installedPackage, 'require', [])), function ($value, $key) {
-                return starts_with($value, self::EXT);
+                return Str::startsWith($value, self::EXT);
             });
             foreach ($filtered as $extension) {
-                $extensions[] = str_replace_first(self::EXT, '', $extension);
+                $extensions[] = Str::replaceFirst(self::EXT, '', $extension);
             }
         }
         return array_unique($extensions);

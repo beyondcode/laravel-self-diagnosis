@@ -11,9 +11,9 @@ class SelfDiagnosisServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadTranslationsFrom(__DIR__.'/../translations', 'self-diagnosis');
+        
         if ($this->app->runningInConsole()) {
-
-            $this->loadTranslationsFrom(__DIR__.'/../translations', 'self-diagnosis');
 
             $this->publishes([
                 __DIR__.'/../translations' => resource_path('lang/vendor/self-diagnosis'),

@@ -29,19 +29,15 @@ class ExampleEnvironmentVariablesAreUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        if (interface_exists(\Dotenv\Environment\FactoryInterface::class)) {
-            $examples = Dotenv::create(base_path(), '.env.example');
-            $actual = Dotenv::create(base_path(), '.env');
-        } else {
-            $examples = new Dotenv(base_path(), '.env.example');
-            $actual = new Dotenv(base_path(), '.env');
-        }
+        $examples = Dotenv::createMutable(base_path(), '.env.example');
+        $examples = $examples->safeLoad();
 
-        $examples->safeLoad();
-        $actual->safeLoad();
+        $actual = Dotenv::createMutable(base_path(), '.env');
+        $actual = $actual->safeLoad();
 
-        $this->envVariables = Collection::make($actual->getEnvironmentVariableNames())
-            ->diff($examples->getEnvironmentVariableNames());
+        $this->envVariables = Collection::make($actual)
+            ->diffKeys($examples)
+            ->keys();
 
         return $this->envVariables->isEmpty();
     }

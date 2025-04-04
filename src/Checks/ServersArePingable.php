@@ -88,10 +88,10 @@ class ServersArePingable implements Check
 
         foreach ($servers as $server) {
             if (is_array($server)) {
-                if (!empty(array_except($server, ['host', 'port', 'timeout']))) {
+                if (!empty(Arr::except($server, ['host', 'port', 'timeout']))) {
                     throw new InvalidConfigurationException('Servers in array notation may only contain a host, port and timeout parameter.');
                 }
-                if (!array_has($server, 'host')) {
+                if (!Arr::has($server, 'host')) {
                     throw new InvalidConfigurationException('For servers in array notation, the host parameter is required.');
                 }
 

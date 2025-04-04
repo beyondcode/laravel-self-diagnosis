@@ -29,6 +29,13 @@ class ExampleEnvironmentVariablesAreSet implements Check
      */
     public function check(array $config): bool
     {
+        if (method_exists(Dotenv::class, 'createUnsafeImmutable')) {
+            return $this->checkForDotEnvV5();
+        }
+        if (method_exists(Dotenv::class, 'createImmutable')) {
+            return $this->checkForDotEnvV4();
+        }
+
         if (interface_exists(\Dotenv\Environment\FactoryInterface::class)) {
             $examples = Dotenv::create(base_path(), '.env.example');
             $actual = Dotenv::create(base_path(), '.env');
@@ -42,6 +49,40 @@ class ExampleEnvironmentVariablesAreSet implements Check
 
         $this->envVariables = Collection::make($examples->getEnvironmentVariableNames())
             ->diff($actual->getEnvironmentVariableNames());
+
+        return $this->envVariables->isEmpty();
+    }
+
+    /**
+     * Perform the verification of this check for DotEnv v4.
+     *
+     * @return bool
+     */
+    private function checkForDotEnvV4(): bool
+    {
+        $examples = Dotenv::createImmutable(base_path(), '.env.example');
+        $actual = Dotenv::createImmutable(base_path(), '.env');
+
+        $this->envVariables = Collection::make($examples->safeLoad())
+            ->diffKeys($actual->safeLoad())
+            ->keys();
+
+        return $this->envVariables->isEmpty();
+    }
+
+    /**
+     * Perform the verification of this check for DotEnv v5.
+     *
+     * @return bool
+     */
+    private function checkForDotEnvV5(): bool
+    {
+        $examples = Dotenv::createMutable(base_path(), '.env.example');
+        $actual = Dotenv::createMutable(base_path(), '.env');
+
+        $this->envVariables = Collection::make($examples->safeLoad())
+            ->diffKeys($actual->safeLoad())
+            ->keys();
 
         return $this->envVariables->isEmpty();
     }
