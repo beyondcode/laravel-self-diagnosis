@@ -4,6 +4,8 @@ namespace BeyondCode\SelfDiagnosis\Checks;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Contracts\Redis\Factory as RedisFactory;
+use Illuminate\Redis\Connections\PhpRedisConnection;
 
 class RedisCanBeAccessed implements Check
 {
@@ -73,8 +75,12 @@ class RedisCanBeAccessed implements Check
      */
     private function testConnection(string $name = null): bool
     {
-        $connection = Redis::connection($name);
-        $connection->connect();
+        $redis = app(RedisFactory::class);
+        $connection = $redis->connection($name);
+        // phpredis connects automatically
+        if (!$connection instanceof PhpRedisConnection) {
+            $connection->connect();
+        }
         return $connection->isConnected();
     }
 }
