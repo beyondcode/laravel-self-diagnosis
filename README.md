@@ -11,8 +11,8 @@ Here is an example output of the command:
 
 ## Included checks
 
-- Is the APP_KEY set?
-- Are your composer dependencies up to date with the composer.lock file?
+- Is the `APP_KEY` set?
+- Are your composer dependencies up to date with the `composer.lock` file?
 - Do you have the correct PHP version installed?
 - Do you have the correct PHP extensions installed?
 - Can a connection to the database be established?
