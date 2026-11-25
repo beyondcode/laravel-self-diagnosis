@@ -29,11 +29,13 @@ class ExampleEnvironmentVariablesAreSet implements Check
      */
     public function check(array $config): bool
     {
+        $environment = getenv();
+
         if (method_exists(Dotenv::class, 'createUnsafeImmutable')) {
-            return $this->checkForDotEnvV5();
+            return $this->checkForDotEnvV5($environment);
         }
         if (method_exists(Dotenv::class, 'createImmutable')) {
-            return $this->checkForDotEnvV4();
+            return $this->checkForDotEnvV4($environment);
         }
 
         if (interface_exists(\Dotenv\Environment\FactoryInterface::class)) {
@@ -48,7 +50,10 @@ class ExampleEnvironmentVariablesAreSet implements Check
         $actual->safeLoad();
 
         $this->envVariables = Collection::make($examples->getEnvironmentVariableNames())
-            ->diff($actual->getEnvironmentVariableNames());
+            ->diff($actual->getEnvironmentVariableNames())
+            ->reject(function ($name) use ($environment) {
+                return array_key_exists($name, $environment);
+            });
 
         return $this->envVariables->isEmpty();
     }
@@ -56,16 +61,20 @@ class ExampleEnvironmentVariablesAreSet implements Check
     /**
      * Perform the verification of this check for DotEnv v4.
      *
+     * @param array $environment
      * @return bool
      */
-    private function checkForDotEnvV4(): bool
+    private function checkForDotEnvV4(array $environment): bool
     {
         $examples = Dotenv::createImmutable(base_path(), '.env.example');
         $actual = Dotenv::createImmutable(base_path(), '.env');
 
         $this->envVariables = Collection::make($examples->safeLoad())
             ->diffKeys($actual->safeLoad())
-            ->keys();
+            ->keys()
+            ->reject(function ($name) use ($environment) {
+                return array_key_exists($name, $environment);
+            });
 
         return $this->envVariables->isEmpty();
     }
@@ -73,16 +82,20 @@ class ExampleEnvironmentVariablesAreSet implements Check
     /**
      * Perform the verification of this check for DotEnv v5.
      *
+     * @param array $environment
      * @return bool
      */
-    private function checkForDotEnvV5(): bool
+    private function checkForDotEnvV5(array $environment): bool
     {
         $examples = Dotenv::createMutable(base_path(), '.env.example');
         $actual = Dotenv::createMutable(base_path(), '.env');
 
         $this->envVariables = Collection::make($examples->safeLoad())
             ->diffKeys($actual->safeLoad())
-            ->keys();
+            ->keys()
+            ->reject(function ($name) use ($environment) {
+                return array_key_exists($name, $environment);
+            });
 
         return $this->envVariables->isEmpty();
     }
